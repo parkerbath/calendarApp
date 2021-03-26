@@ -1,5 +1,48 @@
 import React from "react";
+import { navigate } from "@reach/router";
+import { Typography, Grid, Button, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles(() => ({
+  root: {
+    marginTop: 100,
+  },
+  item: {
+    marginTop: 40,
+  },
+}));
 
 export default function Home() {
-  return <h1>HOME</h1>;
+  const classes = useStyles();
+  return (
+    <div className={classes.root}>
+      <Grid container direction='column' alignItems='center'>
+        <Grid item>
+          <Typography className={classes.item} variant='h1'>
+            Welcome to Astro
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography
+            className={classes.item}
+            style={{ textAlign: "center", width: 600 }}
+            variant='h6'
+          >
+            The new state of the art planning and calendar app that combines
+            personal and professional life.
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Button
+            variant='contained'
+            className={classes.item}
+            onClick={() => navigate("/calendar")}
+          >
+            Get Started
+          </Button>
+        </Grid>
+      </Grid>
+
+      {/* for now goes to events page but with authentication should go to signUp page */}
+    </div>
+  );
 }
