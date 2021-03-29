@@ -1,5 +1,10 @@
 import React from "react";
+import EventForm from "../components/EventForm";
 
 export default function Events() {
-  return <h1>EVENTS</h1>;
+  return (
+    <div>
+      <EventForm />
+    </div>
+  );
 }
