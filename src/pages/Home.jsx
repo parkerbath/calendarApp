@@ -1,7 +1,7 @@
 import React from "react";
 import { navigate } from "@reach/router";
 import { Typography, Grid, Button, makeStyles } from "@material-ui/core";
-
+import NavBar from "../";
 const useStyles = makeStyles(() => ({
   root: {
     marginTop: 100,
@@ -37,12 +37,11 @@ export default function Home() {
             className={classes.item}
             onClick={() => navigate("/calendar")}
           >
+            {/* for now goes to events page but with authentication should go to signUp page */}
             Get Started
           </Button>
         </Grid>
       </Grid>
-
-      {/* for now goes to events page but with authentication should go to signUp page */}
     </div>
   );
 }
