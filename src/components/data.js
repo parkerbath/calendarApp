@@ -7,6 +7,7 @@ for (let i = 1; i < 29; i++) {
 
 let events = [];
 events.push({
+  id: 1,
   day: "Mon, Wed, Fri",
   title: "Journalism Class",
   startTime: "11:00",
@@ -14,6 +15,7 @@ events.push({
   color: "#fff07c",
 });
 events.push({
+  id: 2,
   day: "Mon",
   title: "React Team Meeting",
   startTime: "13:00",
@@ -21,6 +23,7 @@ events.push({
   color: "#A27035",
 });
 events.push({
+  id: 3,
   day: "Mon, Wed",
   title: "Theology Class",
   startTime: "14:00",
@@ -28,6 +31,7 @@ events.push({
   color: "#87BBA2",
 });
 events.push({
+  id: 4,
   day: "Mon",
   title: "Production",
   startTime: "17:30",
@@ -36,6 +40,7 @@ events.push({
 });
 
 events.push({
+  id: 5,
   day: "Thurs",
   title: "Rhetorical Arts Class",
   startTime: "7:50",
@@ -44,6 +49,7 @@ events.push({
 });
 
 events.push({
+  id: 6,
   day: "Tue, Thu",
   title: "CMSI 186",
   startTime: "9:50",
@@ -51,6 +57,7 @@ events.push({
   color: "#034078",
 });
 events.push({
+  id: 7,
   day: "Tue",
   title: "IEEE Meeting",
   startTime: "20:00",
@@ -59,6 +66,7 @@ events.push({
 });
 
 events.push({
+  id: 8,
   day: "Thurs",
   title: "React Class",
   startTime: "18:00",

@@ -1,5 +1,5 @@
-import React from "react";
-import { Grid, Typography, makeStyles } from "@material-ui/core";
+import React, { useState } from "react";
+import { Grid, Typography, makeStyles, Button, Modal } from "@material-ui/core";
 import { data } from "./data";
 
 const useStyles = makeStyles(() => ({
@@ -24,6 +24,12 @@ const useStyles = makeStyles(() => ({
     padding: 5,
     borderRadius: "10px",
   },
+  modal: {
+    display: "flex",
+    align: "center",
+    justify: "center",
+    width: 400,
+  },
 }));
 
 const mockData = {
@@ -39,19 +45,58 @@ const mockData = {
 
 export default function CalendarLayout() {
   const classes = useStyles();
+  const [display, setDisplay] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [eventId, setEventId] = useState("");
+
+  function handleEventModalOpen(event, id) {
+    event.preventDefault();
+    setEventId(id);
+    setModalOpen(true);
+  }
+
+  function handleEventModalClose() {
+    setEventId("");
+    setModalOpen(false);
+  }
+
   return (
-    <Grid container direction='row' justify='start'>
-      <Grid item xs={3}>
-        <Grid container className={classes.reminders} direction='column'>
-          <Typography variant='h4' className={classes.title}>
-            REMINDERS
-          </Typography>
-          {mockData.reminders.map((item) => (
-            <li>{item}</li>
-          ))}
-        </Grid>
+    <Grid
+      container
+      direction='row'
+      justify='start'
+      style={{ backgroundColor: "#fff" }}
+    >
+      <Grid
+        item
+        xs={12}
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginTop: 20,
+          marginRight: 20,
+        }}
+      >
+        <Button
+          variant='contained'
+          onClick={() => setDisplay((prevState) => !prevState)}
+        >
+          {display ? "Side by Side" : "Full Screen"}
+        </Button>
       </Grid>
-      <Grid item xs={9} className={classes.calendar}>
+      {!display ? (
+        <Grid item xs={3}>
+          <Grid container className={classes.reminders} direction='column'>
+            <Typography variant='h4' className={classes.title}>
+              REMINDERS
+            </Typography>
+            {mockData.reminders.map((item) => (
+              <li>{item}</li>
+            ))}
+          </Grid>
+        </Grid>
+      ) : null}
+      <Grid item xs={display ? 12 : 9} className={classes.calendar}>
         <Grid container>
           <Grid item xs={12} align='center'>
             <Typography variant='h4' className={classes.title}>
@@ -76,18 +121,33 @@ export default function CalendarLayout() {
                         )
                       )
                       .map((item) => (
-                        <Grid
-                          item
-                          style={{ backgroundColor: item.color }}
-                          className={classes.event}
-                        >
-                          <Typography style={{ fontSize: 12 }}>
-                            {item.title}
-                          </Typography>
-                          <Typography style={{ fontSize: 12 }}>
-                            {item.startTime} - {item.endTime}
-                          </Typography>
-                        </Grid>
+                        <>
+                          <Grid
+                            item
+                            style={{ backgroundColor: item.color }}
+                            className={classes.event}
+                            onClick={(event) =>
+                              handleEventModalOpen(event, item.id)
+                            }
+                          >
+                            <Typography style={{ fontSize: 12 }}>
+                              {item.title}
+                            </Typography>
+                            <Typography style={{ fontSize: 12 }}>
+                              {item.startTime} - {item.endTime}
+                            </Typography>
+                          </Grid>
+                          <Modal
+                            open={modalOpen}
+                            onClose={handleEventModalClose}
+                            className={classes.modal}
+                            style={{ backgroundColor: item.color }}
+                          >
+                            <Typography style={{ backgroundColor: "white" }}>
+                              HELLO
+                            </Typography>
+                          </Modal>
+                        </>
                       ))}
                   </Grid>
                 </Grid>
