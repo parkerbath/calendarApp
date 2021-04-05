@@ -5,6 +5,8 @@ import {
     Grid,
     Button,
   } from "@material-ui/core";
+  import addToAssignments from '../pages/Assignments'
+  
 
   const useStyles = makeStyles(() => ({
     root: { 
@@ -29,15 +31,17 @@ import {
       const [category, setCategory] = useState("");
       const [dueTime, setDueTime] = useState("");
       const classes = useStyles();
-      const [assignments, setAssignments] = useState([]);
+      const [assignment, setAssignment] = useState({});
+      
 
       function handleSubmit() {
-          setAssignments([{title: description, date: dueDate, class: category, time: dueTime}, ...assignments]);
+          setAssignment([{title: description, date: dueDate, class: category, time: dueTime}]);
+          addToAssignments(assignment);
           setDescription("");
           setDueDate("");
           setCategory("");
           setDueTime("");
-          console.log(assignments)
+        //   console.log(assignments)
 
       }
 
@@ -54,7 +58,7 @@ import {
                   <Grid item xs={12}><input className={classes.input} placeholder="Due Time" value={dueTime} onChange={(event) => setDueTime(event.target.value)}></input></Grid>
                   <Grid item xs={12}><Button variant="contained" className={classes.button} onClick={handleSubmit}>Submit</Button></Grid>
               </Grid>
-              <Grid> 
+              {/* <Grid> 
                   {assignments &&
                       assignments.map((task) => (
                           <>
@@ -66,7 +70,7 @@ import {
                       ))
 
                   }
-              </Grid>
+              </Grid> */}
 
 
 
