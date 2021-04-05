@@ -37,6 +37,7 @@ export default function EventForm(props) {
   //     description,
   //     addToList,
   //   } = props;
+  const { addToList } = props;
   const [title, setTitle] = useState("");
   const [day, setDay] = useState("");
   const [startTime, setStartTime] = useState("");
@@ -44,20 +45,25 @@ export default function EventForm(props) {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const classes = useStyles();
-  const [events, setEvents] = useState([]);
+  const [eventItem, setEventItem] = useState({});
 
   function handleSubmit() {
-    setEvents([
-      {
-        title: title,
-        date: day,
-        startTime: startTime,
-        endTime: endTime,
-        location: location,
-        description: description,
-      },
-      ...events,
-    ]);
+    setEventItem({
+      title: title,
+      date: day,
+      startTime: startTime,
+      endTime: endTime,
+      location: location,
+      description: description,
+    });
+    addToList({
+      title: title,
+      date: day,
+      startTime: startTime,
+      endTime: endTime,
+      location: location,
+      description: description,
+    });
     setTitle("");
     setDay("");
     setStartTime("");
@@ -130,7 +136,7 @@ export default function EventForm(props) {
           Submit
         </Button>
         <Grid>
-          {events &&
+          {/* {events &&
             events.map((event) => (
               <>
                 <Typography>{event.title}</Typography>
@@ -140,7 +146,7 @@ export default function EventForm(props) {
                 <Typography>{event.location}</Typography>
                 <Typography>{event.description}</Typography>
               </>
-            ))}
+            ))} */}
         </Grid>
       </Grid>
     </div>
