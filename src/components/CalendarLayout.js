@@ -26,9 +26,18 @@ const useStyles = makeStyles(() => ({
   },
   modal: {
     display: "flex",
-    align: "center",
-    justify: "center",
+    flex: 1,
+    justifyContent: "center",
     width: 400,
+    height: 400,
+  },
+  paper: {
+    position: "absolute",
+    width: 400,
+    backgroundColor: "#fff",
+    border: "2px solid #000",
+    // boxShadow: theme.shadows[5],
+    // padding: theme.spacing(2, 4, 3),
   },
 }));
 
@@ -65,7 +74,7 @@ export default function CalendarLayout() {
       container
       direction='row'
       justify='start'
-      style={{ backgroundColor: "#fff" }}
+      style={{ backgroundColor: "#fff", opacity: modalOpen ? "10%" : "100%" }}
     >
       <Grid
         item
@@ -124,6 +133,7 @@ export default function CalendarLayout() {
                         <>
                           <Grid
                             item
+                            // xs={12}
                             style={{ backgroundColor: item.color }}
                             className={classes.event}
                             onClick={(event) =>
@@ -137,16 +147,24 @@ export default function CalendarLayout() {
                               {item.startTime} - {item.endTime}
                             </Typography>
                           </Grid>
-                          <Modal
-                            open={modalOpen}
-                            onClose={handleEventModalClose}
-                            className={classes.modal}
-                            style={{ backgroundColor: item.color }}
-                          >
-                            <Typography style={{ backgroundColor: "white" }}>
-                              HELLO
-                            </Typography>
-                          </Modal>
+                          {modalOpen && item.id == eventId ? (
+                            <Modal
+                              open={modalOpen}
+                              onClose={handleEventModalClose}
+                              // className={classes.modal}
+                              // style={{ backgroundColor: item.color }}
+                            >
+                              <div
+                                className={classes.paper}
+                                style={{
+                                  top: 300,
+                                  left: 300,
+                                }}
+                              >
+                                <Typography>HELLO</Typography>
+                              </div>
+                            </Modal>
+                          ) : null}
                         </>
                       ))}
                   </Grid>

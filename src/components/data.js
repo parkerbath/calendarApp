@@ -1,5 +1,5 @@
 let dates = [];
-for (let i = 1; i < 29; i++) {
+for (let i = 1; i < 8; i++) {
   let d = new Date(2021, 2, i).toLocaleDateString("en-US").split("/");
   let day = { month: d[0], day: d[1], year: d[2] };
   dates.push(day);
@@ -54,7 +54,7 @@ events.push({
   title: "CMSI 186",
   startTime: "9:50",
   endTime: "11:05",
-  color: "#034078",
+  color: "#066088",
 });
 events.push({
   id: 7,
