@@ -1,51 +1,40 @@
-import {React, useState} from "react";
+import { React, useState } from "react";
 import {
-    Typography,
-    makeStyles,
-    Grid,
-    Button,
-    Card,
-    CardContent,
-  } from "@material-ui/core";
-  import AssignmentCard from './AssignmentCard';
+  Typography,
+  makeStyles,
+  Grid,
+  Button,
+  Card,
+  CardContent,
+} from "@material-ui/core";
+import AssignmentCard from "./AssignmentCard";
 
-  const useStyles = makeStyles(() => ({
-    root: { 
-        textAlign: "center",
-        marginTop: 50,
-    },
-    button: {
-        padding: 10,
-        margin: 10,
-        color: "green",
-        alignSelf: "center",
-    },
-    input: {
-        padding: 10,
-        margin: 10,
-        width: "50%",
-    }
-}))
+const useStyles = makeStyles(() => ({
+  root: {
+    textAlign: "center",
+    marginTop: 50,
+  },
+  button: {
+    padding: 10,
+    margin: 10,
+    color: "green",
+    alignSelf: "center",
+  },
+  input: {
+    padding: 10,
+    margin: 10,
+    width: "50%",
+  },
+}));
 
-  export default function AssignmentList(props) {
-      const {assignments} = props;
+export default function AssignmentList(props) {
+  const { assignments } = props;
 
-      return (
-          <div>
-             <Grid container>
-
-                 {assignments && assignments.map(tasks => (
-                     <Grid item xs={4}>
-                        {assign.title}
-                    </Grid>
-
-                 ))}
-             
-             </Grid> 
-          </div>
-        
-      )
-
-
-
-  }
+  return (
+    <div>
+      <Grid container>
+        {assignments && assignments.map((tasks) => <Grid item xs={4}></Grid>)}
+      </Grid>
+    </div>
+  );
+}
