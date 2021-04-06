@@ -7,12 +7,12 @@ export default function Assignments() {
   const [assignments, setAssignments] = useState([]);
 
   function addToAssignments(assign) {
-    setAssignments([assign, ...assignments]);
+    setAssignments([{...assign}, ...assignments]);
   }
   return (
   <>
   <AssignmentsForm addToAssignments ={addToAssignments} />
-  <AssignmentList />
+  <AssignmentList assignments ={assignments}/>
   
 
   </>

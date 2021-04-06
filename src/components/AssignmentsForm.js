@@ -5,7 +5,7 @@ import {
     Grid,
     Button,
   } from "@material-ui/core";
-  import addToAssignments from '../pages/Assignments'
+
   
 
   const useStyles = makeStyles(() => ({
@@ -25,7 +25,8 @@ import {
         width: "50%",
     }
 }))
-  export default function AssignmentsForm() {
+  export default function AssignmentsForm(props) {
+      const { addToAssignments} = props;
       const [description, setDescription] = useState("");
       const [dueDate, setDueDate] = useState("");
       const [category, setCategory] = useState("");
@@ -35,8 +36,8 @@ import {
       
 
       function handleSubmit() {
-          setAssignment([{title: description, date: dueDate, class: category, time: dueTime}]);
-          addToAssignments(assignment);
+          setAssignment({title: description, date: dueDate, class: category, time: dueTime});
+          addToAssignments({title: description, date: dueDate, class: category, time: dueTime});
           setDescription("");
           setDueDate("");
           setCategory("");

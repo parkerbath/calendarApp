@@ -34,9 +34,9 @@ import {
           <div>
              <Grid container>
 
-                 {assignments && assignments.map(tasks => (
+                 {assignments && assignments.map(assign => (
                      <Grid item xs={4}>
-                        {assign.title}
+                         <AssignmentCard assignment={assign} />      
                     </Grid>
 
                  ))}

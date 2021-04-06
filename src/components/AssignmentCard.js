@@ -36,10 +36,10 @@ const useStyles = makeStyles({
           <Card className={classes.root} variant= "outlined">
             <CardContent>
               <Typography className={classes.title} color="textSecondary" gutterBottom>
-                {assignment.title} 
+                {assignment.date} 
               </Typography>
               <Typography variant="h5" component="h2">
-                {assignment.date} 
+                {assignment.title} 
               </Typography>
               <Typography className={classes.pos} color="textSecondary">
                 {assignment.class} 
