@@ -1,11 +1,12 @@
 import React from "react";
+import { Typography } from "@material-ui/core";
 import { Router } from "@reach/router";
 import Navbar from "./components/Navbar";
 import About from "./pages/About";
 import Assignments from "./pages/Assignments";
 import Events from "./pages/Events";
 import Home from "./pages/Home";
-import { Typography } from "@material-ui/core";
+import Calendar from "./pages/Calendar";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <About path='/about' />
         <Assignments path='/assignments' />
         <Events path='/calendar' />
+        <Calendar path='/testCal' />
       </Router>
     </>
   );
