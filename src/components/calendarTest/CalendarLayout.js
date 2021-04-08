@@ -26,10 +26,8 @@ const useStyles = makeStyles(() => ({
   },
   modal: {
     display: "flex",
-    flex: 1,
+    alignItems: "center",
     justifyContent: "center",
-    width: 400,
-    height: 400,
   },
   paper: {
     position: "absolute",
@@ -74,7 +72,7 @@ export default function CalendarLayout() {
       container
       direction='row'
       justify='start'
-      style={{ backgroundColor: "#fff", opacity: modalOpen ? "10%" : "100%" }}
+      style={{ backgroundColor: "#fff" }}
     >
       <Grid
         item
@@ -151,18 +149,12 @@ export default function CalendarLayout() {
                             <Modal
                               open={modalOpen}
                               onClose={handleEventModalClose}
-                              // className={classes.modal}
+                              className={classes.modal}
                               // style={{ backgroundColor: item.color }}
                             >
-                              <div
-                                className={classes.paper}
-                                style={{
-                                  top: 300,
-                                  left: 300,
-                                }}
-                              >
-                                <Typography>HELLO</Typography>
-                              </div>
+                              <Typography className={classes.paper}>
+                                HELLO
+                              </Typography>
                             </Modal>
                           ) : null}
                         </>
