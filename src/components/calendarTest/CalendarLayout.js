@@ -145,7 +145,7 @@ export default function CalendarLayout() {
                               {item.startTime} - {item.endTime}
                             </Typography>
                           </Grid>
-                          {modalOpen && item.id == eventId ? (
+                          {modalOpen && item.id === eventId ? (
                             <Modal
                               open={modalOpen}
                               onClose={handleEventModalClose}

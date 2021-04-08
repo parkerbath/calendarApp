@@ -1,7 +1,6 @@
 import React from "react";
 import { navigate } from "@reach/router";
 import { Typography, Grid, Button, makeStyles } from "@material-ui/core";
-import NavBar from "../";
 const useStyles = makeStyles(() => ({
   root: {
     marginTop: 100,

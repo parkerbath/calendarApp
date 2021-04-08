@@ -1,14 +1,8 @@
 import React from "react";
-import {
-  Toolbar,
-  Typography,
-  makeStyles,
-  Grid,
-  Button,
-} from "@material-ui/core";
+import { Toolbar, Typography, makeStyles, Grid } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuIcon from "@material-ui/icons/Menu";
-import { navigate, Link } from "@reach/router";
+import { Link } from "@reach/router";
 
 const useStyles = makeStyles(() => ({
   toolbar: {

@@ -1,5 +1,4 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
 import { Router } from "@reach/router";
 import Navbar from "./components/Navbar";
 import About from "./pages/About";
