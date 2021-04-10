@@ -8,22 +8,27 @@ import Typography from "@material-ui/core/Typography";
 import EventForm from "./EventForm";
 import EventCard from "./EventCard";
 
-const useStyles = makeStyles((theme) => ({}));
-
-// const { event } = props;
-// const classes = useStyles();
-// addToList({ ...events });
+const useStyles = makeStyles({
+  root: {
+    marginTop: 40,
+    margin: 5,
+  },
+  grid: {
+    marginTop: 20,
+    paddingTop: 20,
+  },
+});
 
 export default function EventList(props) {
-  const classes = useStyles();
   const { events } = props;
+  const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.root}>
       <Grid container align="center" alignItems="center">
         {events &&
           events.map((item) => (
-            <Grid item xs={4}>
+            <Grid item xs={4} style={{ margin: 0 }}>
               <EventCard event={item} />
             </Grid>
           ))}

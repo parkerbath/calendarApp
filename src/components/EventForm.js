@@ -9,15 +9,38 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import { navigate, Link } from "@reach/router";
 
-const useStyles = makeStyles(() => ({
+// const useStyles = makeStyles(() => ({
+//   root: {
+//     textAlign: "center",
+//     marginTop: 50,
+//   },
+//   button: {
+//     padding: 10,
+//     margin: 10,
+//     color: "red",
+//     alignSelf: "center",
+//   },
+//   input: {
+//     padding: 10,
+//     margin: 10,
+//     width: "50%",
+//   },
+// }));
+
+const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: "center",
     marginTop: 50,
   },
+  grid: {
+    marginTop: 60,
+    width: 500,
+    height: 450,
+  },
   button: {
+    marginTop: 20,
     padding: 10,
     margin: 10,
-    color: "red",
     alignSelf: "center",
   },
   input: {
@@ -37,6 +60,7 @@ export default function EventForm(props) {
   //     description,
   //     addToList,
   //   } = props;
+  const classes = useStyles();
   const { addToList } = props;
   const [title, setTitle] = useState("");
   const [day, setDay] = useState("");
@@ -44,7 +68,7 @@ export default function EventForm(props) {
   const [endTime, setEndTime] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
-  const classes = useStyles();
+
   const [eventItem, setEventItem] = useState({});
 
   function handleSubmit() {
@@ -76,11 +100,9 @@ export default function EventForm(props) {
     <div className={classes.root}>
       <Grid container direction="row" justify="center" alignItem="center">
         <Grid item xs={12}>
-          <Typography variant="h2" style={{ fontFamily: "Raleway" }}>
-            New Event
-          </Typography>
+          <Typography variant="h3">MEOW EVENT</Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={5} style={{ marginTop: 25 }}>
           <input
             className={classes.input}
             placeholder="Title"
@@ -88,15 +110,8 @@ export default function EventForm(props) {
             onChange={(event) => setTitle(event.target.value)}
           />
         </Grid>
-        <Grid item xs={12}>
-          <input
-            className={classes.input}
-            placeholder="Date"
-            value={day}
-            onChange={(event) => setDay(event.target.value)}
-          />
-        </Grid>
-        <Grid item xs={12}>
+
+        <Grid item xs={5} style={{ marginTop: 25 }}>
           <input
             className={classes.input}
             placeholder="Starts at"
@@ -104,7 +119,15 @@ export default function EventForm(props) {
             onChange={(event) => setStartTime(event.target.value)}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={5}>
+          <input
+            className={classes.input}
+            placeholder="Date"
+            value={day}
+            onChange={(event) => setDay(event.target.value)}
+          />
+        </Grid>
+        <Grid item xs={5}>
           <input
             className={classes.input}
             placeholder="Ends at"
@@ -112,7 +135,7 @@ export default function EventForm(props) {
             onChange={(event) => setEndTime(event.target.value)}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} style={{ marginTop: 15 }}>
           <input
             className={classes.input}
             placeholder="Location"
@@ -129,6 +152,7 @@ export default function EventForm(props) {
           />
         </Grid>
         <Button
+          style={{ marginTop: 20 }}
           variant="contained"
           className={classes.submit}
           onClick={handleSubmit}
