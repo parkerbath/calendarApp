@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import CardActions from "@material-ui/core/CardActions";
@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import EventForm from "./EventForm";
 import EventCard from "./EventCard";
+import { firestore } from "../firebase";
 
 const useStyles = makeStyles({
   root: {
@@ -20,8 +21,23 @@ const useStyles = makeStyles({
 });
 
 export default function EventList(props) {
-  const { events } = props;
   const classes = useStyles();
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    firestore
+      .collection("events")
+      .get()
+      .then(function (querySnapshot) {
+        let data = [];
+        querySnapshot.forEach(function (doc) {
+          data.push({ id: doc.id, ...doc.data() });
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+        });
+        setEvents(data);
+      });
+  }, []);
 
   return (
     <div className={classes.root}>

@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { navigate, Link } from "@reach/router";
+import { firestore } from "../firebase";
 
 // const useStyles = makeStyles(() => ({
 //   root: {
@@ -72,28 +73,28 @@ export default function EventForm(props) {
   const [eventItem, setEventItem] = useState({});
 
   function handleSubmit() {
-    setEventItem({
-      title: title,
-      date: day,
-      startTime: startTime,
-      endTime: endTime,
-      location: location,
-      description: description,
-    });
-    addToList({
-      title: title,
-      date: day,
-      startTime: startTime,
-      endTime: endTime,
-      location: location,
-      description: description,
-    });
-    setTitle("");
-    setDay("");
-    setStartTime("");
-    setEndTime("");
-    setLocation("");
-    setDescription("");
+    firestore
+      .collection("events")
+      .add({
+        title,
+        day,
+        startTime,
+        endTime,
+        location,
+        description,
+      })
+      .then(() => {
+        console.log("Document successfully written!");
+        setTitle("");
+        setDay("");
+        setStartTime("");
+        setEndTime("");
+        setLocation("");
+        setDescription("");
+      })
+      .catch((error) => {
+        console.error("Error writing document: ", error);
+      });
   }
 
   return (

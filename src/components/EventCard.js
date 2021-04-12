@@ -70,7 +70,7 @@ export default function EventCard(props) {
                   variant="h7"
                   color="textSecondary"
                 >
-                  {event.date}
+                  {event.day}
                 </Typography>
               </Grid>
             </Grid>
