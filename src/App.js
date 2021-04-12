@@ -6,6 +6,8 @@ import Assignments from "./pages/Assignments";
 import Events from "./pages/Events";
 import Home from "./pages/Home";
 import Calendar from "./pages/Calendar";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Assignments path='/assignments' />
         <Events path='/calendar' />
         <Calendar path='/testCal' />
+        <Login path='/login' />
+        <SignUp path='/signup' />
       </Router>
     </>
   );

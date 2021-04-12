@@ -1,6 +1,5 @@
 import React from "react";
 import { Toolbar, Typography, makeStyles, Grid } from "@material-ui/core";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "@reach/router";
 
@@ -54,8 +53,9 @@ export default function Navbar() {
               <Link to='/about' className={classes.text}>
                 <Typography className={classes.about}>About Us</Typography>
               </Link>
-
-              <AccountCircle className={classes.account} />
+              <Link to='/login' className={classes.text}>
+                <Typography className={classes.about}>Login</Typography>
+              </Link>
             </Grid>
           </Grid>
         </Grid>

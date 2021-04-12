@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { firestore } from "../firebase";
 import {
   Typography,
   Grid,
@@ -21,8 +22,34 @@ const useStyles = makeStyles(() => ({
 
 export default function AboutContent() {
   const classes = useStyles();
+  const [test, setTest] = useState([]);
+
+  useEffect(() => {
+    firestore
+      .collection("testData")
+      .get()
+      .then(function (querySnapshot) {
+        let data = [];
+        querySnapshot.forEach(function (doc) {
+          data.push({ id: doc.id, ...doc.data() });
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+        });
+        setTest(data);
+      });
+  }, []);
+
   return (
     <Grid className={classes.root} justify='center' align='center'>
+      <Grid item>
+        {test &&
+          test.map((d) => (
+            <>
+              <Typography>{d.title}</Typography>
+              <Typography>{d.body}</Typography>
+            </>
+          ))}
+      </Grid>
       <Grid item>
         <Typography variant='h2'>Meet the team.</Typography>
       </Grid>
