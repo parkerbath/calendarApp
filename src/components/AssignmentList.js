@@ -1,4 +1,4 @@
-import {React, useState} from "react";
+import {React, useState, useEffect} from "react";
 import {
     Typography,
     makeStyles,
@@ -8,6 +8,7 @@ import {
     CardContent,
   } from "@material-ui/core";
   import AssignmentCard from './AssignmentCard';
+  import {firestore} from '../firebase'
 
   const useStyles = makeStyles(() => ({
     root: { 
@@ -27,8 +28,23 @@ import {
     }
 }))
 
-  export default function AssignmentList(props) {
-      const {assignments} = props;
+  export default function AssignmentList() {
+      const [assignments, setAssignments] = useState([]);
+
+      useEffect(() => {
+        firestore
+          .collection("assignments")
+          .get()
+          .then(function (querySnapshot) {
+            let data = [];
+            querySnapshot.forEach(function (doc) {
+              data.push({ id: doc.id, ...doc.data() });
+              // doc.data() is never undefined for query doc snapshots
+              console.log(doc.id, " => ", doc.data());
+            });
+            setAssignments(data);
+          });
+      }, []);
 
       return (
           <div>
