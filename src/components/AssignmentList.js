@@ -25,7 +25,16 @@ import {
         padding: 10,
         margin: 10,
         width: "50%",
+    },
+    grid: {
+      marginTop: 20,
+      paddingTop: 20,
+    },
+    root: {
+      marginTop: 20,
+      margin: 5,
     }
+
 }))
 
   export default function AssignmentList() {

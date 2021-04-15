@@ -24,7 +24,18 @@ import {
         padding: 10,
         margin: 10,
         width: "50%",
-    }
+    },
+    modal: {
+        boxShadow: "0 3px 20px 5px rgba(0, 0, 0, .1)",
+        textAlign: "center",
+        borderRadius: 5,
+        marginTop: 40,
+        marginLeft: 200,
+        paddingTop: 25,
+        maxWidth: 800,
+        background: "white",
+        color: "black",
+      }
 }))
   export default function AssignmentsForm(props) {
       const { addToAssignments} = props;
@@ -35,6 +46,7 @@ import {
       const [dueTime, setDueTime] = useState("");
       const classes = useStyles();
       const [assignment, setAssignment] = useState({});
+      const [display, setDisplay] = useState(false);
       
 
       function handleSubmit() {
@@ -58,15 +70,24 @@ import {
           .catch((error) => {
             console.error("Error writing document: ", error);
           });
+          setDisplay(false);
         //   console.log(assignments)
 
+      }
+
+      function displayModal() {
+        display ? setDisplay(false) : setDisplay(true);
       }
 
 
 
       return (
-          
-          <div className={classes.root}>
+        
+        <>
+        <Typography variant = "h1" justify="center" className ={classes.root}>Assignments</Typography>
+        <Button className={classes.button} variant="contained" onClick={displayModal}> New Assignment </Button>
+          { display ? 
+          <div className={classes.modal}>
               <Grid className={classes.root} containter direction="row" justify="center" align="center">
                   <Grid item xs={12}><Typography variant="h2">Assignment Form</Typography></Grid>
                   <Grid item xs={12}><input className={classes.input} placeholder="Title" value={title} onChange={(event) => setTitle(event.target.value)}></input></Grid>
@@ -75,24 +96,9 @@ import {
                   <Grid item xs={12}><input className={classes.input} placeholder="Class" value={category} onChange={(event) => setCategory(event.target.value)}></input></Grid>
                   <Grid item xs={12}><input className={classes.input} placeholder="Due Time" value={dueTime} onChange={(event) => setDueTime(event.target.value)}></input></Grid>
                   <Grid item xs={12}><Button variant="contained" className={classes.button} onClick={handleSubmit}>Submit</Button></Grid>
-              </Grid>
-              {/* <Grid> 
-                  {assignments &&
-                      assignments.map((task) => (
-                          <>
-                          <Typography>{task.title}</Typography>
-                          <Typography>{task.date}</Typography>
-                          <Typography>{task.class}</Typography>
-                          <Typography>{task.time}</Typography>
-                          </>
-                      ))
-
-                  }
-              </Grid> */}
-
-
-
-          </div>
+              </Grid> 
+          </div> : null }
+        </>
        
 
 

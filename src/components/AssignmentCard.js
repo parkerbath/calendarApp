@@ -10,9 +10,6 @@ import {
 //import assignments from './AssignmentsForm';
 
 const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-  },
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
@@ -23,6 +20,22 @@ const useStyles = makeStyles({
   },
   pos: {
     marginBottom: 12,
+  },
+  root: {
+    padding: 30,
+    paddingTop: 20,
+    minHeight: 200,
+    maxWidth: 300,
+    margin: 10,
+    borderRadius: 5,
+    boxShadow: "0 3px 15px 5px rgba(0, 0, 0, .08)",
+  },
+  grid: {
+    width: 500,
+    height: 450,
+    padding: 20,
+    margin: 20,
+    marginTop: 20,
   },
 });
 
