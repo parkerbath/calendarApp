@@ -5,6 +5,7 @@ import {
   makeStyles,
   Grid,
   Button,
+  Box,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "@reach/router";
@@ -12,8 +13,10 @@ import { auth } from "../firebase";
 
 const useStyles = makeStyles(() => ({
   toolbar: {
-    backgroundColor: "green",
+    background: "green",
     color: "white",
+    height: 48,
+    padding: "0 30px",
   },
   text: {
     color: "white",
@@ -55,10 +58,14 @@ export default function Navbar() {
             <Grid container justify='flex-start'>
               <MenuIcon />
               <Link to='/calendar' className={classes.text}>
-                <Typography style={{ marginLeft: 30 }}>Events</Typography>
+                <Typography style={{ marginLeft: 30 }}>
+                  <Box fontWeight={500}>Events</Box>
+                </Typography>
               </Link>
               <Link to='/assignments' className={classes.text}>
-                <Typography style={{ marginLeft: 50 }}>Assignments</Typography>
+                <Typography style={{ marginLeft: 50 }}>
+                  <Box fontWeight={500}>Assignments</Box>
+                </Typography>
               </Link>
             </Grid>
           </Grid>
@@ -70,15 +77,21 @@ export default function Navbar() {
           <Grid item xs={4}>
             <Grid container justify='flex-end'>
               <Link to='/about' className={classes.text}>
-                <Typography className={classes.about}>About Us</Typography>
+                <Typography className={classes.about}>
+                  <Box fontWeight={500}>About Us</Box>
+                </Typography>
               </Link>
               {currentUser == null ? (
                 <Link to='/login' className={classes.text}>
-                  <Typography className={classes.about}>Login</Typography>
+                  <Typography className={classes.about}>
+                    <Box fontWeight={500}>Login</Box>
+                  </Typography>
                 </Link>
               ) : (
                 <Link to='/sign-out' className={classes.text}>
-                  <Typography className={classes.about}>Sign Out</Typography>
+                  <Typography className={classes.about}>
+                    <Box fontWeight={500}>Sign Out</Box>
+                  </Typography>
                 </Link>
               )}
             </Grid>

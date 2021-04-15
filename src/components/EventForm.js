@@ -5,33 +5,19 @@ import {
   makeStyles,
   Grid,
   Button,
+  Box,
+  Modal,
+  Color,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { navigate, Link } from "@reach/router";
 import { firestore } from "../firebase";
 
-// const useStyles = makeStyles(() => ({
-//   root: {
-//     textAlign: "center",
-//     marginTop: 50,
-//   },
-//   button: {
-//     padding: 10,
-//     margin: 10,
-//     color: "red",
-//     alignSelf: "center",
-//   },
-//   input: {
-//     padding: 10,
-//     margin: 10,
-//     width: "50%",
-//   },
-// }));
-
 const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: "center",
     marginTop: 50,
+    paddingTop: 25,
   },
   grid: {
     marginTop: 60,
@@ -47,20 +33,43 @@ const useStyles = makeStyles((theme) => ({
   input: {
     padding: 10,
     margin: 10,
-    width: "50%",
+    marginTop: 10,
+    width: "71.5%",
+    boxShadow: "0 4px 10px 5px rgba(0, 0, 0, .1)",
+    borderRadius: 3,
+  },
+  submit: {
+    background: "linear-gradient(170deg, #63f883 -30%, #163c1e 105%)",
+    border: 0,
+    borderRadius: 5,
+    boxShadow: "0 3px 10px 5px rgba(0, 0, 0, .2)",
+    color: "white",
+    height: 48,
+    padding: "0 30px",
+  },
+  newEvent: {
+    background: "linear-gradient(170deg, #63f883 -30%, #163c1e 105%)",
+    border: 0,
+    borderRadius: 5,
+    boxShadow: "0 3px 5px 5px rgba(5, 255, 24, .1)",
+    color: "white",
+    height: 48,
+    width: 160,
+    //alignItem: "left",
+  },
+  modal: {
+    boxShadow: "0 3px 20px 5px rgba(0, 0, 0, .3)",
+    textAlign: "center",
+    borderRadius: 5,
+    marginTop: 405,
+    paddingTop: 25,
+    maxWidth: 800,
+    background: "white",
+    color: "white",
   },
 }));
 
 export default function EventForm(props) {
-  //   const {
-  //     title,
-  //     day,
-  //     startTime,
-  //     endTime,
-  //     location,
-  //     description,
-  //     addToList,
-  //   } = props;
   const classes = useStyles();
   const { addToList } = props;
   const [title, setTitle] = useState("");
@@ -69,8 +78,12 @@ export default function EventForm(props) {
   const [endTime, setEndTime] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
-
   const [eventItem, setEventItem] = useState({});
+  const [open, setOpen] = React.useState(false);
+
+  function handleNewEvent() {
+    setOpen(true);
+  }
 
   function handleSubmit() {
     firestore
@@ -95,15 +108,16 @@ export default function EventForm(props) {
       .catch((error) => {
         console.error("Error writing document: ", error);
       });
+    setOpen(false);
   }
 
-  return (
-    <div className={classes.root}>
+  const body = (
+    <div className={classes.modal}>
       <Grid container direction="row" justify="center" alignItem="center">
-        <Grid item xs={12}>
+        <Grid item xs={12} style={{ marginTop: 35, color: "#026923" }}>
           <Typography variant="h3">MEOW EVENT</Typography>
         </Grid>
-        <Grid item xs={5} style={{ marginTop: 25 }}>
+        <Grid item xs={5} style={{ marginTop: 35 }}>
           <input
             className={classes.input}
             placeholder="Title"
@@ -112,7 +126,7 @@ export default function EventForm(props) {
           />
         </Grid>
 
-        <Grid item xs={5} style={{ marginTop: 25 }}>
+        <Grid item xs={5} style={{ marginTop: 35 }}>
           <input
             className={classes.input}
             placeholder="Starts at"
@@ -136,7 +150,7 @@ export default function EventForm(props) {
             onChange={(event) => setEndTime(event.target.value)}
           />
         </Grid>
-        <Grid item xs={12} style={{ marginTop: 15 }}>
+        <Grid item xs={12} style={{ marginTop: 5 }}>
           <input
             className={classes.input}
             placeholder="Location"
@@ -153,27 +167,39 @@ export default function EventForm(props) {
           />
         </Grid>
         <Button
-          style={{ marginTop: 20 }}
+          style={{ marginTop: 35, marginBottom: 50 }}
           variant="contained"
           className={classes.submit}
           onClick={handleSubmit}
         >
-          Submit
+          <Box fontWeight={"fontWeightBold"} m={1}>
+            Submit
+          </Box>
         </Button>
-        <Grid>
-          {/* {events &&
-            events.map((event) => (
-              <>
-                <Typography>{event.title}</Typography>
-                <Typography>{event.date}</Typography>
-                <Typography>{event.startTime}</Typography>
-                <Typography>{event.endTime}</Typography>
-                <Typography>{event.location}</Typography>
-                <Typography>{event.description}</Typography>
-              </>
-            ))} */}
-        </Grid>
       </Grid>
+    </div>
+  );
+
+  return (
+    <div className={classes.root}>
+      <Grid item xs={12}>
+        <Typography variant="h3">EVENTS</Typography>
+      </Grid>
+      <Button
+        type="button"
+        style={{ marginTop: 50 }}
+        variant="contained"
+        justify="left"
+        className={classes.newEvent}
+        onClick={handleNewEvent}
+      >
+        <Box fontWeight={"fontWeightBold"} m={2}>
+          New Event
+        </Box>
+      </Button>
+      <Modal open={open} onClose={handleSubmit}>
+        {body}
+      </Modal>
     </div>
   );
 }

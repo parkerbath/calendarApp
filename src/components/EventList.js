@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import EventForm from "./EventForm";
 import EventCard from "./EventCard";
 import { firestore } from "../firebase";
+import {
+  Toolbar,
+  Typography,
+  makeStyles,
+  Grid,
+  Button,
+  Box,
+  //Modal,
+  CardContent,
+  CardActions,
+  Card,
+  zIndex,
+  MuiThemeProvider,
+  createMuiTheme,
+  colors,
+} from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
-    marginTop: 40,
+    marginTop: 50,
     margin: 5,
+    //paddingTop: 40,
   },
   grid: {
     marginTop: 20,
@@ -44,7 +54,7 @@ export default function EventList(props) {
       <Grid container align="center" alignItems="center">
         {events &&
           events.map((item) => (
-            <Grid item xs={4} style={{ margin: 0 }}>
+            <Grid item xs={4} style={{ padding: 65 }}>
               <EventCard event={item} />
             </Grid>
           ))}

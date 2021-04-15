@@ -1,11 +1,20 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import {
+  Toolbar,
+  Typography,
+  makeStyles,
+  Grid,
+  Button,
+  Box,
+  //Modal,
+  CardContent,
+  CardActions,
+  Card,
+  zIndex,
+  MuiThemeProvider,
+  createMuiTheme,
+  colors,
+} from "@material-ui/core";
 import EventForm from "./EventForm";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,7 +23,11 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 20,
     minHeight: 200,
     maxWidth: 300,
-    margin: 20,
+    margin: 10,
+    borderRadius: 5,
+    boxShadow: "0 3px 15px 5px rgba(0, 0, 0, .15)",
+    //NOTE: later on I am going to restyle the cards to be themed like the navbar with the title and date at the top
+    // background: "linear-gradient(145deg, #63f883 10%, #163c1e 105%)",
   },
   grid: {
     width: 500,
@@ -23,90 +36,74 @@ const useStyles = makeStyles((theme) => ({
     margin: 20,
     marginTop: 20,
   },
-  button: {
-    marginLeft: 10,
-    marginBottom: 20,
-    marginTop: 10,
-    color: "red",
-  },
-  card: {
-    marginTop: 40,
-    padding: 40,
-    margin: 20,
-    borderRadius: 0,
-    backgroundColor: theme.palette.primary.light,
-    color: theme.palette.primary.contrastText,
-    boxShadow: "none",
-  },
 }));
 
-{
-  /* <Grid item xs={6}>
-<Typography align="left" variant="h7" component="h6">
-  {"Subject"}
-</Typography> */
-}
+// const theme = createMuiTheme({
+//   palette: {
+//     //;primary: { main: purple[500] }, // Purple and green play nicely together.
+//     secondary: { main: "#f0fff5" }, // This is just green.A700 as hex.
+//   },
+//   typography: { useNextVariants: true },
+// });
 
 export default function EventCard(props) {
   const { event } = props;
   const classes = useStyles();
 
-  //const bull = <span className={classes.bullet}>•</span>;
-
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
+        {/* <MuiThemeProvider theme={theme}> */}
         <Grid container>
-          <Grid container classname={classes.grid} direction="row">
+          <Grid container direction="row">
             <Grid item xs={6}>
-              <Typography align="left" variant="h5" component="h2">
+              <Typography
+                align="left"
+                variant="h5"
+                component="h2"
+                // color="secondary"
+              >
                 {event.title}
               </Typography>
 
-              <Grid item xs={12} align="left">
-                <Typography
-                  align="left"
-                  styles={classes.grid}
-                  variant="h7"
-                  color="textSecondary"
-                >
-                  {event.day}
+              <Grid item xs={12} align="left" styles={{ paddingTop: 20 }}>
+                <Typography align="left" variant="h7">
+                  <Box m={1}> {event.day}</Box>
                 </Typography>
               </Grid>
             </Grid>
 
-            <Grid item xs={6} alignItem="right">
-              <Typography align="right" variant="h7">
+            <Grid item xs={6}>
+              <Typography variant="h7" color="textSecondary">
                 {event.startTime}
               </Typography>
-              <Typography>-</Typography>
+              <Typography color="textSecondary">-</Typography>
               <Grid item xs={4} alignItem="right">
-                <Typography align="right" styles={{ padding: 20 }} variant="h7">
+                <Typography
+                  align="right"
+                  styles={{ padding: 20 }}
+                  variant="h7"
+                  color="textSecondary"
+                >
                   {event.endTime}
                 </Typography>
               </Grid>
             </Grid>
           </Grid>
-
-          <Grid item xs={12} alignItem="bottom">
-            <Typography
-              classname={{ paddingTop: 20 }}
-              variant="h6"
-              color="textSecondary"
-            >
-              {event.location}
-            </Typography>
-            <Grid item xs={12}>
-              <Typography
-                //className={classes.pos}
-                variant="h6"
-                color="textSecondary"
-              >
-                {event.description}
+          <Grid container direction="row" alignContent="left">
+            <Grid item xs={12} alignItem="left">
+              <Typography variant="h7" color="textSecondary">
+                <Box m={4}> {event.location}</Box>
               </Typography>
+              <Grid item xs={12}>
+                <Typography variant="h7" color="textSecondary">
+                  <Box m={-0.5}> {event.description}</Box>
+                </Typography>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
+        {/* </MuiThemeProvider> */}
       </CardContent>
     </Card>
   );
