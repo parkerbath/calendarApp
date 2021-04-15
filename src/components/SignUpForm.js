@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Grid, Typography, makeStyles, Button } from "@material-ui/core";
-import { firestore } from "../firebase";
+import { firestore, auth } from "../firebase";
 import { navigate } from "@reach/router";
 
 const useStyles = makeStyles(() => ({
@@ -32,21 +32,33 @@ export default function SignUpForm() {
   const [password, setPassword] = useState("");
 
   function handleSubmit() {
-    firestore
-      .collection("users")
-      .add({
-        id: Math.floor(Math.random() * 5000),
-        name,
-        email,
-        password,
-      })
-      .then(() => {
-        setName("");
-        setEmail("");
-        setPassword("");
+    // firestore
+    //   .collection("users")
+    //   .add({
+    //     id: Math.floor(Math.random() * 5000),
+    //     name,
+    //     email,
+    //     password,
+    //   })
+    //   .then(() => {
+    //     setName("");
+    //     setEmail("");
+    //     setPassword("");
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error writing document: ", error);
+    //   });
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+        // ...
       })
       .catch((error) => {
-        console.error("Error writing document: ", error);
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ..
       });
     navigate("/");
     // set navbar link to signout

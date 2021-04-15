@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Typography, Grid, Button, makeStyles } from "@material-ui/core";
 import { Link, navigate } from "@reach/router";
-import { firestore } from "../firebase";
+import { firestore, auth } from "../firebase";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -31,19 +31,31 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
 
   function handleSubmit() {
-    firestore
-      .collection("users")
-      .add({
-        email,
-        password,
-      })
-      .then(() => {
-        console.log("Document successfully written!");
-        setEmail("");
-        setPassword("");
+    // firestore
+    //   .collection("users")
+    //   .add({
+    //     email,
+    //     password,
+    //   })
+    //   .then(() => {
+    //     console.log("Document successfully written!");
+    //     setEmail("");
+    //     setPassword("");
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error writing document: ", error);
+    //   });
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+        console.log("logged in");
+        // ...
       })
       .catch((error) => {
-        console.error("Error writing document: ", error);
+        var errorCode = error.code;
+        var errorMessage = error.message;
       });
     navigate("/");
   }

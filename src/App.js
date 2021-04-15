@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Calendar from "./pages/Calendar";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import SignOut from "./pages/SignOut";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Calendar path='/testCal' />
         <Login path='/login' />
         <SignUp path='/signup' />
+        <SignOut path='/sign-out' />
       </Router>
     </>
   );

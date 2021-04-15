@@ -1,7 +1,14 @@
-import React from "react";
-import { Toolbar, Typography, makeStyles, Grid } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import {
+  Toolbar,
+  Typography,
+  makeStyles,
+  Grid,
+  Button,
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "@reach/router";
+import { auth } from "../firebase";
 
 const useStyles = makeStyles(() => ({
   toolbar: {
@@ -23,6 +30,18 @@ const useStyles = makeStyles(() => ({
 
 export default function Navbar() {
   const classes = useStyles();
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    auth.onAuthStateChanged(function (user) {
+      if (user) {
+        setCurrentUser(user);
+      } else {
+        setCurrentUser(null);
+      }
+    });
+  }, [setCurrentUser]);
+
   return (
     <>
       <Toolbar className={classes.toolbar}>
@@ -53,9 +72,15 @@ export default function Navbar() {
               <Link to='/about' className={classes.text}>
                 <Typography className={classes.about}>About Us</Typography>
               </Link>
-              <Link to='/login' className={classes.text}>
-                <Typography className={classes.about}>Login</Typography>
-              </Link>
+              {currentUser == null ? (
+                <Link to='/login' className={classes.text}>
+                  <Typography className={classes.about}>Login</Typography>
+                </Link>
+              ) : (
+                <Link to='/sign-out' className={classes.text}>
+                  <Typography className={classes.about}>Sign Out</Typography>
+                </Link>
+              )}
             </Grid>
           </Grid>
         </Grid>
