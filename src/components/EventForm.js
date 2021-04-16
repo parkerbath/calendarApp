@@ -16,8 +16,8 @@ import { firestore } from "../firebase";
 const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: "center",
-    marginTop: 50,
     paddingTop: 25,
+    padding: 10,
   },
   grid: {
     marginTop: 60,
@@ -114,7 +114,7 @@ export default function EventForm(props) {
     <div className={classes.modal}>
       <Grid container direction="row" justify="center" alignItem="center">
         <Grid item xs={12} style={{ marginTop: 35, color: "#026923" }}>
-          <Typography variant="h3">MEOW EVENT</Typography>
+          <Typography variant="h3">New Event</Typography>
         </Grid>
         <Grid item xs={5} style={{ marginTop: 35 }}>
           <input
@@ -182,11 +182,13 @@ export default function EventForm(props) {
   return (
     <div className={classes.root}>
       <Grid item xs={12}>
-        <Typography variant="h3">EVENTS</Typography>
+        <Typography variant="h1" justify="center" className={classes.root}>
+          Events
+        </Typography>
       </Grid>
       <Button
         type="button"
-        style={{ marginTop: 50 }}
+        style={{ marginTop: 30 }}
         variant="contained"
         justify="left"
         className={classes.newEvent}
@@ -196,14 +198,17 @@ export default function EventForm(props) {
           New Event
         </Box>
       </Button>
-      <Modal style={{
+      <Modal
+        style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           marginBottom: 200,
           marginTop: 200,
         }}
-        open={open} onClose={handleNewEvent}>
+        open={open}
+        onClose={handleNewEvent}
+      >
         <Grid align="center">{body}</Grid>
       </Modal>
     </div>

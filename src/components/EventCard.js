@@ -21,11 +21,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: 30,
     paddingTop: 20,
-    minHeight: 200,
+    minHeight: 120,
     maxWidth: 300,
     margin: 10,
     borderRadius: 5,
-    //boxShadow: "0 3px 15px 5px rgba(0, 0, 0, .15)",
+    boxShadow: "0 3px 15px 5px rgba(0, 0, 0, .06)",
     //NOTE: later on I am going to restyle the cards to be themed like the navbar with the title and date at the top
     // background: "linear-gradient(145deg, #63f883 10%, #163c1e 105%)",
   },
