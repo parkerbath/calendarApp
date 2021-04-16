@@ -4,6 +4,7 @@ import {
     makeStyles,
     Grid,
     Button,
+    Modal,
   } from "@material-ui/core";
   import { firestore } from "../firebase";
 
@@ -29,10 +30,9 @@ import {
         boxShadow: "0 3px 20px 5px rgba(0, 0, 0, .1)",
         textAlign: "center",
         borderRadius: 5,
-        marginTop: 40,
-        marginLeft: 200,
-        paddingTop: 25,
-        maxWidth: 800,
+        paddingTop: 10,
+        paddingBottom: 20,
+        width: 800,
         background: "white",
         color: "black",
       }
@@ -79,25 +79,42 @@ import {
         display ? setDisplay(false) : setDisplay(true);
       }
 
+      
+      const body = (
+       
+        <div className={classes.modal}>
+        <Grid className={classes.root} containter direction="row" justify="center" align="center">
+            <Grid item xs={12}><Typography variant="h2">Assignment Form</Typography></Grid>
+            <Grid item xs={12}><input className={classes.input} placeholder="Title" value={title} onChange={(event) => setTitle(event.target.value)}></input></Grid>
+            <Grid item xs={12}><input className={classes.input} placeholder="Description" value={description} onChange={(event) => setDescription(event.target.value)}></input></Grid>
+            <Grid item xs={12}><input className={classes.input} placeholder="Due Date" value={dueDate} onChange={(event) => setDueDate(event.target.value)}></input></Grid>
+            <Grid item xs={12}><input className={classes.input} placeholder="Class" value={category} onChange={(event) => setCategory(event.target.value)}></input></Grid>
+            <Grid item xs={12}><input className={classes.input} placeholder="Due Time" value={dueTime} onChange={(event) => setDueTime(event.target.value)}></input></Grid>
+            <Grid item xs={12}><Button variant="contained" className={classes.button} onClick={handleSubmit}>Submit</Button></Grid>
+        </Grid> 
+        </div>
+        
 
+
+      );
 
       return (
         
         <>
         <Typography variant = "h1" justify="center" className ={classes.root}>Assignments</Typography>
         <Button className={classes.button} variant="contained" onClick={displayModal}> New Assignment </Button>
-          { display ? 
-          <div className={classes.modal}>
-              <Grid className={classes.root} containter direction="row" justify="center" align="center">
-                  <Grid item xs={12}><Typography variant="h2">Assignment Form</Typography></Grid>
-                  <Grid item xs={12}><input className={classes.input} placeholder="Title" value={title} onChange={(event) => setTitle(event.target.value)}></input></Grid>
-                  <Grid item xs={12}><input className={classes.input} placeholder="Description" value={description} onChange={(event) => setDescription(event.target.value)}></input></Grid>
-                  <Grid item xs={12}><input className={classes.input} placeholder="Due Date" value={dueDate} onChange={(event) => setDueDate(event.target.value)}></input></Grid>
-                  <Grid item xs={12}><input className={classes.input} placeholder="Class" value={category} onChange={(event) => setCategory(event.target.value)}></input></Grid>
-                  <Grid item xs={12}><input className={classes.input} placeholder="Due Time" value={dueTime} onChange={(event) => setDueTime(event.target.value)}></input></Grid>
-                  <Grid item xs={12}><Button variant="contained" className={classes.button} onClick={handleSubmit}>Submit</Button></Grid>
-              </Grid> 
-          </div> : null }
+            <Modal style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: 200,
+            marginTop: 200,
+        }} open={display} onClose={displayModal}>
+            <Grid justify="center" align="center">
+              {body}
+              </Grid>
+            </Modal>
+
         </>
        
 

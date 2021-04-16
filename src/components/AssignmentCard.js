@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     maxWidth: 300,
     margin: 10,
     borderRadius: 5,
-    boxShadow: "0 3px 15px 5px rgba(0, 0, 0, .08)",
+    boxShadow: "0 3px 15px 5px rgba(0, 0, 0, .06)",
   },
   grid: {
     width: 500,

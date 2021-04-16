@@ -35,14 +35,14 @@ const useStyles = makeStyles((theme) => ({
     margin: 10,
     marginTop: 10,
     width: "71.5%",
-    boxShadow: "0 4px 10px 5px rgba(0, 0, 0, .1)",
+    //boxShadow: "0 4px 10px 5px rgba(0, 0, 0, .1)",
     borderRadius: 3,
   },
   submit: {
     background: "linear-gradient(170deg, #63f883 -30%, #163c1e 105%)",
     border: 0,
     borderRadius: 5,
-    boxShadow: "0 3px 10px 5px rgba(0, 0, 0, .2)",
+    //boxShadow: "0 3px 10px 5px rgba(0, 0, 0, .2)",
     color: "white",
     height: 48,
     padding: "0 30px",
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     background: "linear-gradient(170deg, #63f883 -30%, #163c1e 105%)",
     border: 0,
     borderRadius: 5,
-    boxShadow: "0 3px 5px 5px rgba(5, 255, 24, .1)",
+    //boxShadow: "0 3px 5px 5px rgba(5, 255, 24, .1)",
     color: "white",
     height: 48,
     width: 160,
@@ -61,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0 3px 20px 5px rgba(0, 0, 0, .3)",
     textAlign: "center",
     borderRadius: 5,
-    marginTop: 405,
     paddingTop: 25,
     maxWidth: 800,
     background: "white",
@@ -82,7 +81,7 @@ export default function EventForm(props) {
   const [open, setOpen] = React.useState(false);
 
   function handleNewEvent() {
-    setOpen(true);
+    open ? setOpen(false) : setOpen(true);
   }
 
   function handleSubmit() {
@@ -197,8 +196,15 @@ export default function EventForm(props) {
           New Event
         </Box>
       </Button>
-      <Modal open={open} onClose={handleSubmit}>
-        {body}
+      <Modal style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: 200,
+          marginTop: 200,
+        }}
+        open={open} onClose={handleNewEvent}>
+        <Grid align="center">{body}</Grid>
       </Modal>
     </div>
   );
