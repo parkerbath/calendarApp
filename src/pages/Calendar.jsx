@@ -1,6 +1,6 @@
 import React from "react";
-import CalendarLayout from "../components/calendarTest/CalendarLayout";
+import EventCalendar from "../components/EventCalendar";
 
 export default function Calendar() {
-  return <CalendarLayout />;
+  return <EventCalendar />;
 }
