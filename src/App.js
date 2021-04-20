@@ -19,7 +19,7 @@ function App() {
         <About path='/about' />
         <Assignments path='/assignments' />
         <Events path='/calendar' />
-        <Calendar path='/testCal' />
+        {/* <Calendar path='/testCal' /> */}
         <Login path='/login' />
         <SignUp path='/signup' />
         <SignOut path='/sign-out' />
