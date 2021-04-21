@@ -77,6 +77,8 @@ export default function EventForm(props) {
   const [endTime, setEndTime] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
+  const [reminder, setReminder] = useState("");
+  const [color, setColor] = useState("");
   const [eventItem, setEventItem] = useState({});
   const [open, setOpen] = React.useState(false);
 
@@ -98,6 +100,8 @@ export default function EventForm(props) {
         endTime,
         location,
         description,
+        reminder,
+        color,
       })
       .then(() => {
         console.log("Document successfully written!");
@@ -107,6 +111,8 @@ export default function EventForm(props) {
         setEndTime("");
         setLocation("");
         setDescription("");
+        setReminder("");
+        setColor("");
       })
       .catch((error) => {
         console.error("Error writing document: ", error);
@@ -140,7 +146,7 @@ export default function EventForm(props) {
         <Grid item xs={5}>
           <input
             className={classes.input}
-            placeholder='Date'
+            placeholder='Date (XX/XX/XXXX)'
             value={day}
             onChange={(event) => setDay(event.target.value)}
           />
@@ -167,6 +173,22 @@ export default function EventForm(props) {
             placeholder='Description'
             value={description}
             onChange={(event) => setDescription(event.target.value)}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <input
+            className={classes.input}
+            placeholder='Reminder'
+            value={reminder}
+            onChange={(event) => setReminder(event.target.value)}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <input
+            className={classes.input}
+            placeholder='Color (#hexcode)'
+            value={color}
+            onChange={(event) => setColor(event.target.value)}
           />
         </Grid>
         <Button

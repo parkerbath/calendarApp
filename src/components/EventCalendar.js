@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
   },
   reminders: {
     marginTop: 40,
-    marginLeft: 40,
+    marginLeft: 20,
     width: "80%",
   },
   title: {
@@ -181,9 +181,9 @@ export default function EventCalendar() {
             {events
               .filter((eventItem) => eventItem.reminder)
               .map((item) => (
-                <li>
+                <ul>
                   {item.title}: {item.reminder}
-                </li>
+                </ul>
               ))}
           </Grid>
         </Grid>
