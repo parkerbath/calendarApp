@@ -5,7 +5,7 @@ import { firestore } from "../firebase";
 
 const useStyles = makeStyles(() => ({
   items: {
-    marginTop: 40,
+    width: 150,
     border: "1px solid #eee",
   },
   calendar: {
@@ -62,7 +62,7 @@ export default function AssignmentCalendar() {
         querySnapshot.forEach(function (doc) {
           data.push({ id: doc.id, ...doc.data() });
           // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
+          //   console.log(doc.id, " => ", doc.data());
         });
         setAssignments(data);
       });
@@ -118,7 +118,7 @@ export default function AssignmentCalendar() {
       </Grid>
       {!display ? (
         <Grid item xs={3}>
-          <Grid container className={classes.reminders} direction='column'>
+          <Grid container item className={classes.reminders} direction='column'>
             <Typography variant='h4' className={classes.title}>
               REMINDERS
             </Typography>
@@ -139,92 +139,111 @@ export default function AssignmentCalendar() {
               CALENDAR
             </Typography>
           </Grid>
-          {monthData.map((dayMonth) => (
-            <Grid item xs={2} className={classes.items}>
-              <Grid container direction='column' justify='center'>
-                <Grid item style={{ textAlign: "center" }}>
-                  <Typography variant='body'>
-                    {mockData.days[dayMonth.dow]}
-                  </Typography>
-                  <Typography variant='h6'>{dayMonth.day}</Typography>
-                </Grid>
-                <Grid item style={{ marginLeft: 5, marginTop: 10 }}>
-                  <Grid container>
-                    {assignments
-                      .filter(
-                        (assignItem) =>
-                          assignItem.dueDate &&
-                          assignItem.dueDate.day === dayMonth.day
-                      )
-                      .sort(compareEvents)
-                      .map((item) => (
-                        <>
-                          <Grid
-                            item
-                            // xs={12}
-                            style={{
-                              backgroundColor: item.color
-                                ? item.color
-                                : "green",
-                              minWidth: 75,
-                            }}
-                            className={classes.event}
-                            onClick={(event) =>
-                              handleEventModalOpen(event, item.id)
-                            }
-                          >
-                            <Typography style={{ fontSize: 12 }}>
-                              {item.title}
+          <Grid item xs={12}>
+            <Grid container item direction='column'>
+              {monthData.map((week) => (
+                <Grid item xs style={{ marginTop: 40 }}>
+                  {/* {console.log("WORKING " + dayWeek)} */}
+                  <Grid
+                    container
+                    direction='row'
+                    justify='space-between'
+                    spacing={2}
+                  >
+                    {week.map((dayWeek) => (
+                      <Grid item className={classes.items}>
+                        <Grid container direction='column'>
+                          <Grid item style={{ textAlign: "center" }}>
+                            <Typography variant='body'>
+                              {mockData.days[dayWeek.dow]}
                             </Typography>
-                            <Typography style={{ fontSize: 12 }}>
-                              {item.dueTime}
-                            </Typography>
+                            <Typography variant='h6'>{dayWeek.day}</Typography>
                           </Grid>
-                          {modalOpen && item.id === assignmentId ? (
-                            <Modal
-                              open={modalOpen}
-                              onClose={handleEventModalClose}
-                              className={classes.modal}
-                              // style={{ backgroundColor: item.color }}
-                            >
-                              <Grid
-                                direction='column'
-                                className={classes.modalContent}
-                              >
-                                <Grid item>
-                                  <Typography variant='h3'>
-                                    {item.title}
-                                  </Typography>
-                                </Grid>
-                                <Grid item>
-                                  <Typography variant='h6'>
-                                    Date: {item.dueDate.month}/
-                                    {item.dueDate.day}/{item.dueDate.year}
-                                  </Typography>
-                                </Grid>
-                                <Grid item>
-                                  <Typography variant='h6'>
-                                    Time: {item.dueTime}
-                                  </Typography>
-                                </Grid>
-                                <Grid item>
-                                  <Typography variant='h6'>
-                                    Time: {item.category}
-                                  </Typography>
-                                </Grid>
-                                <Grid item>
-                                  <Typography>{item.description}</Typography>
-                                </Grid>
-                              </Grid>
-                            </Modal>
-                          ) : null}
-                        </>
-                      ))}
+                          <Grid item style={{ marginLeft: 5, marginTop: 10 }}>
+                            <Grid container>
+                              {assignments
+                                .filter(
+                                  (assignItem) =>
+                                    assignItem.dueDate &&
+                                    assignItem.dueDate.day === dayWeek.day
+                                )
+                                .sort(compareEvents)
+                                .map((item) => (
+                                  <>
+                                    <Grid
+                                      item
+                                      // xs={12}
+                                      style={{
+                                        backgroundColor: item.color
+                                          ? item.color
+                                          : "green",
+                                        minWidth: 75,
+                                      }}
+                                      className={classes.event}
+                                      onClick={(event) =>
+                                        handleEventModalOpen(event, item.id)
+                                      }
+                                    >
+                                      <Typography style={{ fontSize: 12 }}>
+                                        {item.title}
+                                      </Typography>
+                                      <Typography style={{ fontSize: 12 }}>
+                                        {item.dueTime}
+                                      </Typography>
+                                    </Grid>
+                                    {modalOpen && item.id === assignmentId ? (
+                                      <Modal
+                                        open={modalOpen}
+                                        onClose={handleEventModalClose}
+                                        className={classes.modal}
+                                        // style={{ backgroundColor: item.color }}
+                                      >
+                                        <Grid
+                                          direction='column'
+                                          className={classes.modalContent}
+                                        >
+                                          <Grid item>
+                                            <Typography variant='h3'>
+                                              {item.title}
+                                            </Typography>
+                                          </Grid>
+                                          <Grid item>
+                                            <Typography variant='h6'>
+                                              Date: {item.dueDate.month}/
+                                              {item.dueDate.day}/
+                                              {item.dueDate.year}
+                                            </Typography>
+                                          </Grid>
+                                          <Grid item>
+                                            <Typography variant='h6'>
+                                              Time: {item.dueTime}
+                                            </Typography>
+                                          </Grid>
+                                          <Grid item>
+                                            <Typography variant='h6'>
+                                              Time: {item.category}
+                                            </Typography>
+                                          </Grid>
+                                          <Grid item>
+                                            <Typography>
+                                              {item.description}
+                                            </Typography>
+                                          </Grid>
+                                        </Grid>
+                                      </Modal>
+                                    ) : null}
+                                  </>
+                                ))}
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    ))}
                   </Grid>
                 </Grid>
-              </Grid>
+              ))}
             </Grid>
-          ))}
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
