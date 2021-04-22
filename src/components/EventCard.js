@@ -16,6 +16,7 @@ import {
   colors,
 } from "@material-ui/core";
 import EventForm from "./EventForm";
+import { firestore } from "../firebase";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
     margin: 20,
     marginTop: 20,
   },
+  button: {
+    marginTop: 30,
+  }
 }));
 
 // const theme = createMuiTheme({
@@ -49,6 +53,17 @@ const useStyles = makeStyles((theme) => ({
 export default function EventCard(props) {
   const { event } = props;
   const classes = useStyles();
+
+  function handleDelete() {
+
+
+    var selectedAssignment = firestore.collection('events').where('title','==',event.title);
+    selectedAssignment.get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+    doc.ref.delete();
+    });
+    });
+  }
 
   return (
     <Card className={classes.root} variant='outlined'>
@@ -104,6 +119,7 @@ export default function EventCard(props) {
           </Grid>
         </Grid>
         {/* </MuiThemeProvider> */}
+        <Button variant= "contained" class={classes.button} onClick={handleDelete}> Delete</Button>
       </CardContent>
     </Card>
   );

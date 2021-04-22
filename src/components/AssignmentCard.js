@@ -7,7 +7,7 @@ import {
     Card,
     CardContent,
   } from "@material-ui/core";
-//import assignments from './AssignmentsForm';
+  import { firestore } from "../firebase";
 
 const useStyles = makeStyles({
   bullet: {
@@ -37,11 +37,39 @@ const useStyles = makeStyles({
     margin: 20,
     marginTop: 20,
   },
+  button: {
+    marginTop: 20,
+  }
 });
 
   export default function AssignmentCard(props) {
     const classes = useStyles();
     const {assignment} = props;
+
+
+    function handleDelete() {
+      // firestore
+      // .collection('assignments')
+      // .doc(firestore
+      //   .collection('assignments')
+      //   .where("title", "==", assignment.title))
+      // .delete()
+
+      var selectedAssignment = firestore.collection('assignments').where('title','==',assignment.title);
+      selectedAssignment.get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+      doc.ref.delete();
+      });
+      });
+      // .then(() => {
+      //   console.log("Document successfully deleted!");
+      // })
+      // .catch((error) => {
+      //   console.error("Error deleting document: ", error);
+      // });
+
+
+  }
 
     return (
 
@@ -63,7 +91,9 @@ const useStyles = makeStyles({
               <Typography variant="body2" component="p">
                 {assignment.dueTime} 
               </Typography>
+              <Button variant= "contained" class={classes.button} onClick={handleDelete}> Delete</Button>
             </CardContent>
+            
           </Card>
         );
   
