@@ -1,19 +1,19 @@
-import {React, useState} from "react";
+import { React, useState } from "react";
 import {
-    Typography,
-    makeStyles,
-    Grid,
-    Button,
-    Card,
-    CardContent,
-  } from "@material-ui/core";
-  import { firestore } from "../firebase";
+  Typography,
+  makeStyles,
+  Grid,
+  Button,
+  Card,
+  CardContent,
+} from "@material-ui/core";
+import { firestore } from "../firebase";
 
 const useStyles = makeStyles({
   bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)",
   },
   title: {
     fontSize: 14,
@@ -39,63 +39,70 @@ const useStyles = makeStyles({
   },
   button: {
     marginTop: 20,
-  }
+  },
 });
 
-  export default function AssignmentCard(props) {
-    const classes = useStyles();
-    const {assignment} = props;
+export default function AssignmentCard(props) {
+  const classes = useStyles();
+  const { assignment } = props;
 
+  function handleDelete() {
+    // firestore
+    // .collection('assignments')
+    // .doc(firestore
+    //   .collection('assignments')
+    //   .where("title", "==", assignment.title))
+    // .delete()
 
-    function handleDelete() {
-      // firestore
-      // .collection('assignments')
-      // .doc(firestore
-      //   .collection('assignments')
-      //   .where("title", "==", assignment.title))
-      // .delete()
-
-      var selectedAssignment = firestore.collection('assignments').where('title','==',assignment.title);
-      selectedAssignment.get().then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
-      doc.ref.delete();
+    var selectedAssignment = firestore
+      .collection("assignments")
+      .where("title", "==", assignment.title);
+    selectedAssignment.get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        doc.ref.delete();
       });
-      });
-      // .then(() => {
-      //   console.log("Document successfully deleted!");
-      // })
-      // .catch((error) => {
-      //   console.error("Error deleting document: ", error);
-      // });
-
-
+    });
+    // .then(() => {
+    //   console.log("Document successfully deleted!");
+    // })
+    // .catch((error) => {
+    //   console.error("Error deleting document: ", error);
+    // });
   }
 
-    return (
-
-      
-          <Card className={classes.root} variant= "outlined">
-            <CardContent>
-              <Typography className={classes.title} color="textSecondary" gutterBottom>
-                {assignment.dueDate} 
-              </Typography>
-              <Typography variant="h5" component="h2">
-                {assignment.title} 
-              </Typography>
-              <Typography variant="body1" component="h2">
-                {assignment.description} 
-              </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                {assignment.category} 
-              </Typography>
-              <Typography variant="body2" component="p">
-                {assignment.dueTime} 
-              </Typography>
-              <Button variant= "contained" class={classes.button} onClick={handleDelete}> Delete</Button>
-            </CardContent>
-            
-          </Card>
-        );
-  
-
-  }
+  return (
+    <Card className={classes.root} variant='outlined'>
+      <CardContent>
+        <Typography
+          className={classes.title}
+          color='textSecondary'
+          gutterBottom
+        >
+          {assignment.dueDate
+            ? `${assignment.dueDate.month}/${assignment.dueDate.day}/${assignment.dueDate.year}`
+            : null}
+        </Typography>
+        <Typography variant='h5' component='h2'>
+          {assignment.title}
+        </Typography>
+        <Typography variant='body1' component='h2'>
+          {assignment.description}
+        </Typography>
+        <Typography className={classes.pos} color='textSecondary'>
+          {assignment.category}
+        </Typography>
+        <Typography variant='body2' component='p'>
+          {assignment.dueTime}
+        </Typography>
+        <Button
+          variant='contained'
+          class={classes.button}
+          onClick={handleDelete}
+        >
+          {" "}
+          Delete
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}

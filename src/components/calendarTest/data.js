@@ -2,6 +2,9 @@ let dates = [];
 for (let i = 1; i < 29; i++) {
   let d = new Date(2021, 3, i);
   let dArray = d.toLocaleDateString("en-US").split("/");
+  parseInt(dArray[1]) < 10
+    ? (dArray[1] = "0" + dArray[1])
+    : (dArray[1] = dArray[1]);
   let dow = d.getDay();
   let date = { month: dArray[0], day: dArray[1], year: dArray[2], dow };
   dates.push(date);

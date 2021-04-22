@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: 30,
-  }
+  },
 }));
 
 // const theme = createMuiTheme({
@@ -55,13 +55,13 @@ export default function EventCard(props) {
   const classes = useStyles();
 
   function handleDelete() {
-
-
-    var selectedAssignment = firestore.collection('events').where('title','==',event.title);
-    selectedAssignment.get().then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc) {
-    doc.ref.delete();
-    });
+    var selectedAssignment = firestore
+      .collection("events")
+      .where("title", "==", event.title);
+    selectedAssignment.get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        doc.ref.delete();
+      });
     });
   }
 
@@ -119,7 +119,14 @@ export default function EventCard(props) {
           </Grid>
         </Grid>
         {/* </MuiThemeProvider> */}
-        <Button variant= "contained" class={classes.button} onClick={handleDelete}> Delete</Button>
+        <Button
+          variant='contained'
+          class={classes.button}
+          onClick={handleDelete}
+        >
+          {" "}
+          Delete
+        </Button>
       </CardContent>
     </Card>
   );

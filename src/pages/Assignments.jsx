@@ -1,22 +1,22 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { Button } from "@material-ui/core";
 import AssignmentsForm from "../components/AssignmentsForm";
 import AssignmentList from "../components/AssignmentList";
-
+import AssignmentCalendar from "../components/AssignmentCalendar";
 
 export default function Assignments() {
-  const [assignments, setAssignments] = useState([]);
-
-  function addToAssignments(assign) {
-    setAssignments([{...assign}, ...assignments]);
-  }
+  const [display, setDisplay] = useState(false);
   return (
-  <>
-  <AssignmentsForm addToAssignments ={addToAssignments} />
-  <AssignmentList assignments ={assignments}/>
-  
-
-  </>
-  )
- 
-
+    <>
+      <Button
+        variant='contained'
+        style={{ marginTop: 20, marginLeft: 20 }}
+        onClick={() => setDisplay((prevState) => !prevState)}
+      >
+        {display ? "List View" : "Calendar View"}
+      </Button>
+      <AssignmentsForm />
+      {display ? <AssignmentCalendar /> : <AssignmentList />}
+    </>
+  );
 }
