@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Grid, Typography, makeStyles, Button, Modal } from "@material-ui/core";
 import { monthData } from "./calendarTest/data";
-import { firestore } from "../firebase";
+import { firestore, auth } from "../firebase";
 
 const useStyles = makeStyles(() => ({
   items: {
@@ -123,6 +123,7 @@ export default function AssignmentCalendar() {
               REMINDERS
             </Typography>
             {assignments
+              .filter((id) => id.userID === auth.currentUser.uid)
               .filter((eventItem) => eventItem.reminder)
               .map((item) => (
                 <ul>
@@ -162,6 +163,11 @@ export default function AssignmentCalendar() {
                           <Grid item style={{ marginLeft: 5, marginTop: 10 }}>
                             <Grid container>
                               {assignments
+                                .filter(
+                                  (id) =>
+                                    auth.currentUser &&
+                                    id.userID === auth.currentUser.uid
+                                )
                                 .filter(
                                   (assignItem) =>
                                     assignItem.dueDate &&

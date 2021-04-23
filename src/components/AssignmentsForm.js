@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { Typography, makeStyles, Grid, Button, Modal } from "@material-ui/core";
-import { firestore } from "../firebase";
+import { auth, firestore } from "../firebase";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -45,6 +45,7 @@ export default function AssignmentsForm(props) {
     firestore
       .collection("assignments")
       .add({
+        userID: auth.currentUser ? auth.currentUser.uid : null,
         title,
         description,
         dueDate: {

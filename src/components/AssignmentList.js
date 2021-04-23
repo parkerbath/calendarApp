@@ -8,7 +8,7 @@ import {
   CardContent,
 } from "@material-ui/core";
 import AssignmentCard from "./AssignmentCard";
-import { firestore } from "../firebase";
+import { firestore, auth } from "../firebase";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -58,11 +58,15 @@ export default function AssignmentList() {
     <div>
       <Grid container>
         {assignments &&
-          assignments.map((assign) => (
-            <Grid item xs={4}>
-              <AssignmentCard assignment={assign} />
-            </Grid>
-          ))}
+          assignments
+            .filter(
+              (id) => auth.currentUser && id.userID === auth.currentUser.uid
+            )
+            .map((assign) => (
+              <Grid item xs={4}>
+                <AssignmentCard assignment={assign} />
+              </Grid>
+            ))}
       </Grid>
     </div>
   );

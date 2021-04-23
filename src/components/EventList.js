@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EventCard from "./EventCard";
-import { firestore } from "../firebase";
+import { firestore, auth } from "../firebase";
 import {
   Toolbar,
   Typography,
@@ -51,13 +51,17 @@ export default function EventList(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container align="center" alignItems="center">
+      <Grid container align='center' alignItems='center'>
         {events &&
-          events.map((item) => (
-            <Grid item xs={4} style={{ padding: 65 }}>
-              <EventCard event={item} />
-            </Grid>
-          ))}
+          events
+            .filter(
+              (id) => auth.currentUser && id.userID === auth.currentUser.uid
+            )
+            .map((item) => (
+              <Grid item xs={4} style={{ padding: 65 }}>
+                <EventCard event={item} />
+              </Grid>
+            ))}
       </Grid>
     </div>
   );
