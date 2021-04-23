@@ -62,7 +62,7 @@ export default function EventCalendar() {
         querySnapshot.forEach(function (doc) {
           data.push({ id: doc.id, ...doc.data() });
           // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
+          // console.log(doc.id, " => ", doc.data());
         });
         setEvents(data);
       });
@@ -80,7 +80,6 @@ export default function EventCalendar() {
   }
 
   function compareEvents(a, b) {
-    // Use toUpperCase() to ignore character casing
     const eventA = parseInt(a.startTime.substring(0, 2));
     const eventB = parseInt(b.startTime.substring(0, 2));
 
@@ -118,7 +117,7 @@ export default function EventCalendar() {
         </Button>
       </Grid>
       {!display ? (
-        <Grid item xs={3}>
+        <Grid item container xs={3}>
           <Grid container className={classes.reminders} direction='column'>
             <Typography variant='h4' className={classes.title}>
               REMINDERS
@@ -136,117 +135,116 @@ export default function EventCalendar() {
           </Grid>
         </Grid>
       ) : null}
-      <Grid item xs={display ? 12 : 9} className={classes.calendar}>
-        <Grid container>
-          <Grid item xs={12} align='center'>
-            <Typography variant='h4' className={classes.title}>
-              CALENDAR
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container item direction='column'>
-              {monthData.map((week) => (
-                <Grid item xs style={{ marginTop: 40 }}>
-                  {/* {console.log("WORKING " + dayWeek)} */}
-                  <Grid
-                    container
-                    direction='row'
-                    justify='space-between'
-                    spacing={2}
-                  >
-                    {week.map((dayWeek) => (
-                      <Grid item className={classes.items}>
-                        <Grid container direction='column'>
-                          <Grid item style={{ textAlign: "center" }}>
-                            <Typography variant='body'>
-                              {mockData.days[dayWeek.dow]}
+      <Grid item container xs={display ? 12 : 9} className={classes.calendar}>
+        <Grid item xs={12} align='center'>
+          <Typography variant='h4' className={classes.title}>
+            CALENDAR
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          container
+          xs={12}
+          direction='column'
+          style={{ marginBottom: 50 }}
+        >
+          {monthData.map((week) => (
+            <Grid
+              item
+              style={{ marginTop: 20 }}
+              container
+              direction='row'
+              justify='space-between'
+              spacing={2}
+            >
+              {week.map((dayWeek) => (
+                <Grid
+                  item
+                  container
+                  className={classes.items}
+                  direction='column'
+                >
+                  <Grid item style={{ textAlign: "center" }}>
+                    <Typography variant='body'>
+                      {mockData.days[dayWeek.dow]}
+                    </Typography>
+                    <Typography variant='h6'>{dayWeek.day}</Typography>
+                  </Grid>
+                  <Grid item container style={{ marginTop: 10 }}>
+                    {events
+                      .filter(
+                        (id) =>
+                          auth.currentUser && id.userID === auth.currentUser.uid
+                      )
+                      .filter(
+                        (eventItem) =>
+                          eventItem.date && eventItem.date.day === dayWeek.day
+                      )
+                      .sort(compareEvents)
+                      .map((item) => (
+                        <>
+                          <Grid
+                            item
+                            style={{
+                              backgroundColor: item.color
+                                ? item.color
+                                : "green",
+                              minWidth: 75,
+                            }}
+                            className={classes.event}
+                            onClick={(event) =>
+                              handleEventModalOpen(event, item.id)
+                            }
+                          >
+                            <Typography style={{ fontSize: 12 }}>
+                              {item.title}
                             </Typography>
-                            <Typography variant='h6'>{dayWeek.day}</Typography>
+                            <Typography style={{ fontSize: 12 }}>
+                              {item.startTime} - {item.endTime}
+                            </Typography>
                           </Grid>
-                          <Grid item style={{ marginLeft: 5, marginTop: 10 }}>
-                            <Grid container>
-                              {events
-                                .filter(
-                                  (id) =>
-                                    auth.currentUser &&
-                                    id.userID === auth.currentUser.uid
-                                )
-                                .filter(
-                                  (eventItem) =>
-                                    eventItem.date &&
-                                    eventItem.date.day === dayWeek.day
-                                )
-                                .sort(compareEvents)
-                                .map((item) => (
-                                  <>
-                                    <Grid
-                                      item
-                                      // xs={12}
-                                      style={{
-                                        backgroundColor: item.color
-                                          ? item.color
-                                          : "green",
-                                      }}
-                                      className={classes.event}
-                                      onClick={(event) =>
-                                        handleEventModalOpen(event, item.id)
-                                      }
-                                    >
-                                      <Typography style={{ fontSize: 12 }}>
-                                        {item.title}
-                                      </Typography>
-                                      <Typography style={{ fontSize: 12 }}>
-                                        {item.startTime} - {item.endTime}
-                                      </Typography>
-                                    </Grid>
-                                    {modalOpen && item.id === eventId ? (
-                                      <Modal
-                                        open={modalOpen}
-                                        onClose={handleEventModalClose}
-                                        className={classes.modal}
-                                        // style={{ backgroundColor: item.color }}
-                                      >
-                                        <Grid
-                                          direction='column'
-                                          className={classes.modalContent}
-                                        >
-                                          <Grid item>
-                                            <Typography variant='h3'>
-                                              {item.title}
-                                            </Typography>
-                                          </Grid>
-                                          <Grid item>
-                                            <Typography variant='h6'>
-                                              Date: {item.date.month}/
-                                              {item.date.day}/{item.date.year}
-                                            </Typography>
-                                          </Grid>
-                                          <Grid item>
-                                            <Typography variant='h6'>
-                                              Time: {item.startTime} -{" "}
-                                              {item.endTime}
-                                            </Typography>
-                                          </Grid>
-                                          <Grid item>
-                                            <Typography>
-                                              {item.description}
-                                            </Typography>
-                                          </Grid>
-                                        </Grid>
-                                      </Modal>
-                                    ) : null}
-                                  </>
-                                ))}
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    ))}
+                          {modalOpen && item.id === eventId ? (
+                            <Modal
+                              open={modalOpen}
+                              onClose={handleEventModalClose}
+                              className={classes.modal}
+                              // style={{ backgroundColor: item.color }}
+                            >
+                              <Grid
+                                container
+                                item
+                                direction='column'
+                                className={classes.modalContent}
+                              >
+                                <Grid item>
+                                  <Typography variant='h3'>
+                                    {item.title}
+                                  </Typography>
+                                </Grid>
+                                <Grid item>
+                                  <Typography variant='h6'>
+                                    Date: {item.date.month}/{item.date.day}/
+                                    {item.date.year}
+                                  </Typography>
+                                </Grid>
+                                <Grid item>
+                                  <Typography variant='h6'>
+                                    Time: {item.startTime} - {item.endTime}
+                                  </Typography>
+                                </Grid>
+                                <Grid item>
+                                  <Typography>{item.description}</Typography>
+                                </Grid>
+                              </Grid>
+                            </Modal>
+                          ) : null}
+                        </>
+                      ))}
                   </Grid>
                 </Grid>
               ))}
             </Grid>
-          </Grid>
+          ))}
         </Grid>
       </Grid>
     </Grid>
