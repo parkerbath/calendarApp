@@ -10,6 +10,7 @@ const useStyles = makeStyles(() => ({
   button: {
     padding: 10,
     margin: 10,
+    marginLeft: 20,
     color: "green",
     alignSelf: "center",
   },
@@ -160,9 +161,6 @@ export default function AssignmentsForm(props) {
 
   return (
     <>
-      <Typography variant='h2' justify='center' className={classes.root}>
-        Assignments
-      </Typography>
       <Button
         className={classes.button}
         variant='contained'
