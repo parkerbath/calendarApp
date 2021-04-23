@@ -15,8 +15,7 @@ import { firestore } from "../firebase";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    textAlign: "center",
-    paddingTop: 25,
+    Align: "left",
     padding: 10,
   },
   grid: {
@@ -122,14 +121,14 @@ export default function EventForm(props) {
 
   const body = (
     <div className={classes.modal}>
-      <Grid container direction='row' justify='center' alignItem='center'>
+      <Grid container direction="row" justify="center" alignItem="center">
         <Grid item xs={12} style={{ marginTop: 35, color: "#026923" }}>
-          <Typography variant='h3'>New Event</Typography>
+          <Typography variant="h3">New Event</Typography>
         </Grid>
         <Grid item xs={5} style={{ marginTop: 35 }}>
           <input
             className={classes.input}
-            placeholder='Title'
+            placeholder="Title"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
           />
@@ -138,7 +137,7 @@ export default function EventForm(props) {
         <Grid item xs={5} style={{ marginTop: 35 }}>
           <input
             className={classes.input}
-            placeholder='Starts at'
+            placeholder="Starts at"
             value={startTime}
             onChange={(event) => setStartTime(event.target.value)}
           />
@@ -146,7 +145,7 @@ export default function EventForm(props) {
         <Grid item xs={5}>
           <input
             className={classes.input}
-            placeholder='Date (XX/XX/XXXX)'
+            placeholder="Date (XX/XX/XXXX)"
             value={day}
             onChange={(event) => setDay(event.target.value)}
           />
@@ -154,7 +153,7 @@ export default function EventForm(props) {
         <Grid item xs={5}>
           <input
             className={classes.input}
-            placeholder='Ends at'
+            placeholder="Ends at"
             value={endTime}
             onChange={(event) => setEndTime(event.target.value)}
           />
@@ -162,7 +161,7 @@ export default function EventForm(props) {
         <Grid item xs={12} style={{ marginTop: 5 }}>
           <input
             className={classes.input}
-            placeholder='Location'
+            placeholder="Location"
             value={location}
             onChange={(event) => setLocation(event.target.value)}
           />
@@ -170,7 +169,7 @@ export default function EventForm(props) {
         <Grid item xs={12}>
           <input
             className={classes.input}
-            placeholder='Description'
+            placeholder="Description"
             value={description}
             onChange={(event) => setDescription(event.target.value)}
           />
@@ -178,7 +177,7 @@ export default function EventForm(props) {
         <Grid item xs={12}>
           <input
             className={classes.input}
-            placeholder='Reminder'
+            placeholder="Reminder"
             value={reminder}
             onChange={(event) => setReminder(event.target.value)}
           />
@@ -186,14 +185,14 @@ export default function EventForm(props) {
         <Grid item xs={12}>
           <input
             className={classes.input}
-            placeholder='Color (#hexcode)'
+            placeholder="Color (#hexcode)"
             value={color}
             onChange={(event) => setColor(event.target.value)}
           />
         </Grid>
         <Button
           style={{ marginTop: 35, marginBottom: 50 }}
-          variant='contained'
+          variant="contained"
           className={classes.submit}
           onClick={handleSubmit}
         >
@@ -207,22 +206,15 @@ export default function EventForm(props) {
 
   return (
     <div className={classes.root}>
-      <Grid item xs={12}>
-        <Typography variant='h1' justify='center' className={classes.root}>
-          Events
-        </Typography>
-      </Grid>
       <Button
-        type='button'
-        style={{ marginTop: 30 }}
-        variant='contained'
-        justify='left'
+        type="button"
+        style={{ marginTop: -40 }}
+        variant="contained"
+        justify="left"
         className={classes.newEvent}
         onClick={handleNewEvent}
       >
-        <Box fontWeight={"fontWeightBold"} m={2}>
-          New Event
-        </Box>
+        <Box fontWeight={"fontWeightMedium"}>New Event</Box>
       </Button>
       <Modal
         style={{
@@ -235,7 +227,7 @@ export default function EventForm(props) {
         open={open}
         onClose={handleNewEvent}
       >
-        <Grid align='center'>{body}</Grid>
+        <Grid align="center">{body}</Grid>
       </Modal>
     </div>
   );
