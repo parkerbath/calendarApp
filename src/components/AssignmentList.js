@@ -12,8 +12,8 @@ import { firestore, auth } from "../firebase";
 
 const useStyles = makeStyles(() => ({
   root: {
-    textAlign: "center",
-    marginTop: 50,
+    marginTop: 0,
+    margin: 5,
   },
   button: {
     padding: 10,
@@ -30,13 +30,10 @@ const useStyles = makeStyles(() => ({
     marginTop: 20,
     paddingTop: 20,
   },
-  root: {
-    marginTop: 20,
-    margin: 5,
-  },
 }));
 
 export default function AssignmentList() {
+  const classes = useStyles();
   const [assignments, setAssignments] = useState([]);
 
   useEffect(() => {
@@ -55,7 +52,7 @@ export default function AssignmentList() {
   }, []);
 
   return (
-    <div>
+    <div className={classes.root}>
       <Grid container align="center" alignItems="center">
         {assignments &&
           assignments
@@ -63,7 +60,7 @@ export default function AssignmentList() {
               (id) => auth.currentUser && id.userID === auth.currentUser.uid
             )
             .map((assign) => (
-              <Grid item xs={4}>
+              <Grid item xs={4} style={{ padding: 65 }}>
                 <AssignmentCard assignment={assign} />
               </Grid>
             ))}

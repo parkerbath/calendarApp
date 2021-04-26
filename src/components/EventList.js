@@ -20,7 +20,7 @@ import {
 
 const useStyles = makeStyles({
   root: {
-    marginTop: 50,
+    marginTop: 0,
     margin: 5,
     //paddingTop: 40,
   },
@@ -51,7 +51,7 @@ export default function EventList(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container align='center' alignItems='center'>
+      <Grid container align="center" alignItems="center">
         {events &&
           events
             .filter(

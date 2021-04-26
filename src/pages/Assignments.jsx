@@ -9,10 +9,9 @@ import { navigate } from "@reach/router";
 const useStyles = makeStyles(() => ({
   root: {
     textAlign: "center",
-    // marginTop: 50,
     paddingTop: 25,
     padding: 10,
-    marginTop: 20,
+    marginTop: -20,
   },
 }));
 
@@ -23,7 +22,7 @@ export default function Assignments() {
   if (!auth.currentUser) {
     return (
       <div className={classes.root}>
-        <Typography variant="h2" justify="center" className={classes.root}>
+        <Typography variant="h2" className={classes.root}>
           Assignments
         </Typography>
         <Typography
