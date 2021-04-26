@@ -1,7 +1,14 @@
 let dates = [];
-let week = [];
-for (let i = 1; i < 29; i++) {
-  let d = new Date(2021, 3, i);
+let week = [
+  { month: "03", day: "28", year: "2021", dow: 0 },
+  { month: "03", day: "29", year: "2021", dow: 1 },
+  { month: "03", day: "30", year: "2021", dow: 2 },
+  { month: "03", day: "31", year: "2021", dow: 3 },
+];
+let month = 2;
+for (let i = 1; i < 32; i++) {
+  month = i == 31 ? 4 : 3;
+  let d = new Date(2021, month, i == 31 ? 1 : i);
   let dArray = d.toLocaleDateString("en-US").split("/");
   dArray[1] = parseInt(dArray[1]) < 10 ? "0" + dArray[1] : dArray[1];
   let dow = d.getDay();
@@ -15,6 +22,7 @@ for (let i = 1; i < 29; i++) {
   }
 }
 dates.push(week);
+// console.log("DATA: " + dates[0][2].month);
 
 // let events = [];
 // events.push({

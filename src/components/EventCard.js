@@ -1,26 +1,19 @@
 import React from "react";
 import {
-  Toolbar,
   Typography,
   makeStyles,
   Grid,
   Button,
   Box,
-  //Modal,
   CardContent,
-  CardActions,
   Card,
-  zIndex,
-  MuiThemeProvider,
-  createMuiTheme,
-  colors,
 } from "@material-ui/core";
-import EventForm from "./EventForm";
+import { DeleteOutlined } from "@material-ui/icons";
 import { firestore } from "../firebase";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: 30,
+    padding: 20,
     paddingTop: 20,
     minHeight: 120,
     maxWidth: 300,
@@ -39,16 +32,9 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: 30,
+    padding: 5,
   },
 }));
-
-// const theme = createMuiTheme({
-//   palette: {
-//     //;primary: { main: purple[500] }, // Purple and green play nicely together.
-//     secondary: { main: "#f0fff5" }, // This is just green.A700 as hex.
-//   },
-//   typography: { useNextVariants: true },
-// });
 
 export default function EventCard(props) {
   const { event } = props;
@@ -68,7 +54,6 @@ export default function EventCard(props) {
   return (
     <Card className={classes.root} variant='outlined'>
       <CardContent>
-        {/* <MuiThemeProvider theme={theme}> */}
         <Grid container>
           <Grid container direction='row'>
             <Grid item xs={6}>
@@ -110,23 +95,19 @@ export default function EventCard(props) {
               <Typography variant='h7' color='textSecondary'>
                 <Box m={4}> {event.location}</Box>
               </Typography>
-              <Grid item xs={12}>
-                <Typography variant='h7' color='textSecondary'>
-                  <Box m={-0.5}> {event.description}</Box>
-                </Typography>
-              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant='h7' color='textSecondary'>
+                <Box m={-0.5}> {event.description}</Box>
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Button className={classes.button} onClick={handleDelete}>
+                <DeleteOutlined style={{ color: "red" }} />
+              </Button>
             </Grid>
           </Grid>
         </Grid>
-        {/* </MuiThemeProvider> */}
-        <Button
-          variant='contained'
-          class={classes.button}
-          onClick={handleDelete}
-        >
-          {" "}
-          Delete
-        </Button>
       </CardContent>
     </Card>
   );

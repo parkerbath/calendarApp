@@ -7,6 +7,7 @@ import {
   Card,
   CardContent,
 } from "@material-ui/core";
+import { DeleteOutlined } from "@material-ui/icons";
 import { firestore } from "../firebase";
 
 const useStyles = makeStyles({
@@ -38,7 +39,8 @@ const useStyles = makeStyles({
     marginTop: 20,
   },
   button: {
-    marginTop: 20,
+    marginTop: 10,
+    marginLeft: -20,
   },
 });
 
@@ -94,13 +96,8 @@ export default function AssignmentCard(props) {
         <Typography variant='body2' component='p'>
           {assignment.dueTime}
         </Typography>
-        <Button
-          variant='contained'
-          class={classes.button}
-          onClick={handleDelete}
-        >
-          {" "}
-          Delete
+        <Button className={classes.button} onClick={handleDelete}>
+          <DeleteOutlined style={{ color: "red" }} />
         </Button>
       </CardContent>
     </Card>
