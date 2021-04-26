@@ -9,7 +9,10 @@ import { navigate } from "@reach/router";
 const useStyles = makeStyles(() => ({
   root: {
     textAlign: "center",
-    marginTop: 50,
+    // marginTop: 50,
+    paddingTop: 25,
+    padding: 10,
+    marginTop: 20,
   },
 }));
 
@@ -20,11 +23,11 @@ export default function Assignments() {
   if (!auth.currentUser) {
     return (
       <div className={classes.root}>
-        <Typography variant='h2' justify='center' className={classes.root}>
+        <Typography variant="h2" justify="center" className={classes.root}>
           Assignments
         </Typography>
         <Typography
-          variant='h5'
+          variant="h5"
           style={{
             display: "flex",
             justifyContent: "center",
@@ -35,7 +38,7 @@ export default function Assignments() {
           Oops! You need to Login or SignUp first.
         </Typography>
         <Button
-          variant='contained'
+          variant="contained"
           style={{ marginTop: 30 }}
           onClick={() => navigate("/login")}
         >
@@ -47,19 +50,19 @@ export default function Assignments() {
     return (
       <>
         <Button
-          variant='contained'
+          variant="contained"
           style={{
-            marginTop: 10,
-            marginRight: 20,
+            padding: 10.5,
             float: "right",
-            padding: 10,
+            marginRight: 20,
+            marginTop: 23,
           }}
           onClick={() => setDisplay((prevState) => !prevState)}
         >
           {display ? "List View" : "Calendar View"}
         </Button>
         <AssignmentsForm />
-        <Typography variant='h2' justify='center' className={classes.root}>
+        <Typography variant="h2" justify="center" className={classes.root}>
           Assignments
         </Typography>
         {display ? <AssignmentCalendar /> : <AssignmentList />}

@@ -8,11 +8,27 @@ const useStyles = makeStyles(() => ({
     marginTop: 50,
   },
   button: {
-    padding: 10,
+    padding: 20,
     margin: 10,
+    marginTop: 22,
+    background: "linear-gradient(170deg, #63f883 -30%, #163c1e 105%)",
+    border: 0,
+    borderRadius: 5,
+    color: "white",
+    height: 48,
+    width: 200,
+  },
+  assignmentButton: {
+    padding: 20,
+    margin: 10,
+    marginTop: 22,
     marginLeft: 20,
-    color: "green",
-    alignSelf: "center",
+    background: "linear-gradient(170deg, #63f883 -30%, #163c1e 105%)",
+    border: 0,
+    borderRadius: 5,
+    color: "white",
+    height: 48,
+    width: 200,
   },
   input: {
     padding: 10,
@@ -84,17 +100,17 @@ export default function AssignmentsForm(props) {
       <Grid
         className={classes.root}
         containter
-        direction='row'
-        justify='center'
-        align='center'
+        direction="row"
+        justify="center"
+        align="center"
       >
         <Grid item xs={12}>
-          <Typography variant='h2'>Assignment Form</Typography>
+          <Typography variant="h2">Assignment Form</Typography>
         </Grid>
         <Grid item xs={12}>
           <input
             className={classes.input}
-            placeholder='Title'
+            placeholder="Title"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
           />
@@ -102,7 +118,7 @@ export default function AssignmentsForm(props) {
         <Grid item xs={12}>
           <input
             className={classes.input}
-            placeholder='Description'
+            placeholder="Description"
             value={description}
             onChange={(event) => setDescription(event.target.value)}
           ></input>
@@ -110,7 +126,7 @@ export default function AssignmentsForm(props) {
         <Grid item xs={12}>
           <input
             className={classes.input}
-            placeholder='Due Date (XX/XX/XXXX)'
+            placeholder="Due Date (XX/XX/XXXX)"
             value={dueDate}
             onChange={(event) => setDueDate(event.target.value)}
           />
@@ -118,7 +134,7 @@ export default function AssignmentsForm(props) {
         <Grid item xs={12}>
           <input
             className={classes.input}
-            placeholder='Due Time'
+            placeholder="Due Time"
             value={dueTime}
             onChange={(event) => setDueTime(event.target.value)}
           />
@@ -126,7 +142,7 @@ export default function AssignmentsForm(props) {
         <Grid item xs={12}>
           <input
             className={classes.input}
-            placeholder='Class'
+            placeholder="Class"
             value={category}
             onChange={(event) => setCategory(event.target.value)}
           />
@@ -134,7 +150,7 @@ export default function AssignmentsForm(props) {
         <Grid item xs={12}>
           <input
             className={classes.input}
-            placeholder='Reminder'
+            placeholder="Reminder"
             value={reminder}
             onChange={(event) => setReminder(event.target.value)}
           />
@@ -142,14 +158,14 @@ export default function AssignmentsForm(props) {
         <Grid item xs={12}>
           <input
             className={classes.input}
-            placeholder='Color'
+            placeholder="Color"
             value={color}
             onChange={(event) => setColor(event.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
           <Button
-            variant='contained'
+            variant="contained"
             className={classes.button}
             onClick={handleSubmit}
           >
@@ -163,8 +179,8 @@ export default function AssignmentsForm(props) {
   return (
     <>
       <Button
-        className={classes.button}
-        variant='contained'
+        className={classes.assignmentButton}
+        variant="contained"
         onClick={displayModal}
       >
         {" "}
@@ -181,7 +197,7 @@ export default function AssignmentsForm(props) {
         open={display}
         onClose={displayModal}
       >
-        <Grid justify='center' align='center'>
+        <Grid justify="center" align="center">
           {body}
         </Grid>
       </Modal>

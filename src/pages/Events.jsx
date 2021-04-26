@@ -54,13 +54,13 @@ export default function Events() {
       <div className={classes.root}>
         <Button
           variant="contained"
-          onClick={() => setDisplay((prevState) => !prevState)}
           style={{
-            padding: 10,
+            padding: 10.5,
             float: "right",
             marginRight: 10,
-            marginTop: -20,
+            marginTop: -20.5,
           }}
+          onClick={() => setDisplay((prevState) => !prevState)}
         >
           {display ? "Calendar View" : "List View"}
         </Button>
