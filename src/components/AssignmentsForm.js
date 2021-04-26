@@ -158,7 +158,7 @@ export default function AssignmentsForm(props) {
         <Grid item xs={12}>
           <input
             className={classes.input}
-            placeholder="Color"
+            placeholder="Color (#hexcode)"
             value={color}
             onChange={(event) => setColor(event.target.value)}
           />
