@@ -56,7 +56,7 @@ export default function AssignmentList() {
 
   return (
     <div>
-      <Grid container>
+      <Grid container align="center" alignItems="center">
         {assignments &&
           assignments
             .filter(

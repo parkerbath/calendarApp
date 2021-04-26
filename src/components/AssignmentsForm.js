@@ -102,7 +102,7 @@ export default function AssignmentsForm(props) {
         containter
         direction="row"
         justify="center"
-        align="center"
+        alignItem="center"
       >
         <Grid item xs={12}>
           <Typography variant="h2">Assignment Form</Typography>
@@ -197,9 +197,7 @@ export default function AssignmentsForm(props) {
         open={display}
         onClose={displayModal}
       >
-        <Grid justify="center" align="center">
-          {body}
-        </Grid>
+        <Grid align="center">{body}</Grid>
       </Modal>
     </>
   );
