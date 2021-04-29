@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { auth } from "../firebase";
 import { Button, makeStyles, Typography } from "@material-ui/core";
 import EventForm from "../components/EventForm";
@@ -19,18 +19,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Events() {
+export default function Events(props) {
+  const { currentUser } = props;
   const [display, setDisplay] = useState(true);
   const classes = useStyles();
 
-  if (!auth.currentUser) {
+  if (!currentUser) {
     return (
       <div className={classes.noUser}>
-        <Typography variant="h2" justify="center" className={classes.root}>
+        <Typography variant='h2' justify='center' className={classes.root}>
           Events
         </Typography>
         <Typography
-          variant="h5"
+          variant='h5'
           style={{
             display: "flex",
             justifyContent: "center",
@@ -41,7 +42,7 @@ export default function Events() {
           Oops! You need to Login or SignUp first.
         </Typography>
         <Button
-          variant="contained"
+          variant='contained'
           style={{ marginTop: 30 }}
           onClick={() => navigate("/login")}
         >
@@ -53,7 +54,7 @@ export default function Events() {
     return (
       <div className={classes.root}>
         <Button
-          variant="contained"
+          variant='contained'
           style={{
             padding: 10.5,
             float: "right",
@@ -65,7 +66,7 @@ export default function Events() {
           {display ? "Calendar View" : "List View"}
         </Button>
         <EventForm />
-        <Typography variant="h2" align="center">
+        <Typography variant='h2' align='center'>
           Events
         </Typography>
 

@@ -51,14 +51,28 @@ export default function AssignmentList() {
       });
   }, []);
 
+  function compareAssignments(a, b) {
+    const eventA = parseInt(a.dueDate.day);
+    const eventB = parseInt(b.dueDate.day);
+
+    let comparison = 0;
+    if (eventA > eventB) {
+      comparison = -1;
+    } else if (eventA < eventB) {
+      comparison = 1;
+    }
+    return comparison;
+  }
+
   return (
     <div className={classes.root}>
-      <Grid container align="center" alignItems="center">
+      <Grid container align='center' alignItems='center'>
         {assignments &&
           assignments
             .filter(
               (id) => auth.currentUser && id.userID === auth.currentUser.uid
             )
+            .sort(compareAssignments)
             .map((assign) => (
               <Grid item xs={4} style={{ padding: 65 }}>
                 <AssignmentCard assignment={assign} />

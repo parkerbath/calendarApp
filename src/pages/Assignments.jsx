@@ -15,18 +15,19 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Assignments() {
+export default function Assignments(props) {
+  const { currentUser } = props;
   const classes = useStyles();
   const [display, setDisplay] = useState(false);
 
-  if (!auth.currentUser) {
+  if (!currentUser) {
     return (
       <div className={classes.root}>
-        <Typography variant="h2" className={classes.root}>
+        <Typography variant='h2' className={classes.root}>
           Assignments
         </Typography>
         <Typography
-          variant="h5"
+          variant='h5'
           style={{
             display: "flex",
             justifyContent: "center",
@@ -37,7 +38,7 @@ export default function Assignments() {
           Oops! You need to Login or SignUp first.
         </Typography>
         <Button
-          variant="contained"
+          variant='contained'
           style={{ marginTop: 30 }}
           onClick={() => navigate("/login")}
         >
@@ -49,7 +50,7 @@ export default function Assignments() {
     return (
       <>
         <Button
-          variant="contained"
+          variant='contained'
           style={{
             padding: 10.5,
             float: "right",
@@ -61,7 +62,7 @@ export default function Assignments() {
           {display ? "List View" : "Calendar View"}
         </Button>
         <AssignmentsForm />
-        <Typography variant="h2" justify="center" className={classes.root}>
+        <Typography variant='h2' justify='center' className={classes.root}>
           Assignments
         </Typography>
         {display ? <AssignmentCalendar /> : <AssignmentList />}
