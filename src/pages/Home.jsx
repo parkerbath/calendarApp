@@ -1,5 +1,6 @@
 import React from "react";
 import { navigate } from "@reach/router";
+import { auth } from "../firebase";
 import { Typography, Grid, Button, makeStyles } from "@material-ui/core";
 const useStyles = makeStyles(() => ({
   root: {
@@ -12,6 +13,15 @@ const useStyles = makeStyles(() => ({
 
 export default function Home() {
   const classes = useStyles();
+
+  function handleNav() {
+    if (auth.currentUser) {
+      navigate("/events");
+    } else {
+      navigate("/login");
+    }
+  }
+
   return (
     <div className={classes.root}>
       <Grid container direction='column' alignItems='center'>
@@ -34,7 +44,7 @@ export default function Home() {
           <Button
             variant='contained'
             className={classes.item}
-            onClick={() => navigate("/calendar")}
+            onClick={handleNav}
           >
             {/* for now goes to events page but with authentication should go to signUp page */}
             Get Started

@@ -57,7 +57,7 @@ export default function Navbar() {
           <Grid item xs={4}>
             <Grid container justify='flex-start'>
               <MenuIcon />
-              <Link to='/calendar' className={classes.text}>
+              <Link to='/events' className={classes.text}>
                 <Typography style={{ marginLeft: 30 }}>
                   <Box fontWeight={500}>Events</Box>
                 </Typography>
