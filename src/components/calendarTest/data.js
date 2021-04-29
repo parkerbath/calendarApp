@@ -1,12 +1,12 @@
 let dates = [];
 let week = [
-  { month: "03", day: "28", year: "2021", dow: 0 },
-  { month: "03", day: "29", year: "2021", dow: 1 },
-  { month: "03", day: "30", year: "2021", dow: 2 },
-  { month: "03", day: "31", year: "2021", dow: 3 },
+  { month: null, day: null, year: null, dow: null },
+  { month: null, day: null, year: null, dow: null },
+  { month: null, day: null, year: null, dow: null },
+  { month: null, day: null, year: null, dow: null },
 ];
 let month = 2;
-for (let i = 1; i < 32; i++) {
+for (let i = 1; i < 31; i++) {
   month = i == 31 ? 4 : 3;
   let d = new Date(2021, month, i == 31 ? 1 : i);
   let dArray = d.toLocaleDateString("en-US").split("/");
@@ -21,6 +21,7 @@ for (let i = 1; i < 32; i++) {
     week.push(date);
   }
 }
+week.push({ month: null, day: null, year: null, dow: null });
 dates.push(week);
 // console.log("DATA: " + dates[0][2].month);
 

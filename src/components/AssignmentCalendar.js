@@ -162,6 +162,7 @@ export default function AssignmentCalendar() {
                   item
                   container
                   className={classes.items}
+                  style={{ width: display ? 200 : 150 }}
                   direction='column'
                 >
                   <Grid item style={{ textAlign: "center" }}>
