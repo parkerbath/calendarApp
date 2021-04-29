@@ -177,6 +177,11 @@ export default function EventCalendar() {
                           auth.currentUser && id.userID === auth.currentUser.uid
                       )
                       .filter(
+                        (monItem) =>
+                          monItem.date &&
+                          monItem.date.month === "0" + dayWeek.month
+                      )
+                      .filter(
                         (eventItem) =>
                           eventItem.date && eventItem.date.day === dayWeek.day
                       )

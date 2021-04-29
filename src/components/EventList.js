@@ -49,14 +49,28 @@ export default function EventList(props) {
       });
   }, []);
 
+  function compareEvents(a, b) {
+    const eventA = parseInt(a.date.day);
+    const eventB = parseInt(b.date.day);
+
+    let comparison = 0;
+    if (eventA > eventB) {
+      comparison = -1;
+    } else if (eventA < eventB) {
+      comparison = 1;
+    }
+    return comparison;
+  }
+
   return (
     <div className={classes.root}>
-      <Grid container align="center" alignItems="center">
+      <Grid container align='center' alignItems='center'>
         {events &&
           events
             .filter(
               (id) => auth.currentUser && id.userID === auth.currentUser.uid
             )
+            .sort(compareEvents)
             .map((item) => (
               <Grid item xs={4} style={{ padding: 65 }}>
                 <EventCard event={item} />
