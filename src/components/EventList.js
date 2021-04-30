@@ -64,7 +64,7 @@ export default function EventList(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container align='center' alignItems='center'>
+      <Grid container align='left' alignItems='center'>
         {events &&
           events
             .filter(
@@ -72,7 +72,7 @@ export default function EventList(props) {
             )
             .sort(compareEvents)
             .map((item) => (
-              <Grid item xs={4} style={{ padding: 65 }}>
+              <Grid item xs={4} style={{ padding: 35 }}>
                 <EventCard event={item} />
               </Grid>
             ))}

@@ -66,7 +66,7 @@ export default function AssignmentList() {
 
   return (
     <div className={classes.root}>
-      <Grid container align='center' alignItems='center'>
+      <Grid container align='left' alignItems='center'>
         {assignments &&
           assignments
             .filter(
@@ -74,7 +74,7 @@ export default function AssignmentList() {
             )
             .sort(compareAssignments)
             .map((assign) => (
-              <Grid item xs={4} style={{ padding: 65 }}>
+              <Grid item xs={4} style={{ padding: 35 }}>
                 <AssignmentCard assignment={assign} />
               </Grid>
             ))}

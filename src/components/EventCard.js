@@ -31,8 +31,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 20,
   },
   button: {
-    marginTop: 30,
+    marginTop: 10,
     padding: 5,
+    marginLeft: 200,
   },
 }));
 
@@ -55,6 +56,11 @@ export default function EventCard(props) {
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Grid container>
+        <Grid item xs={12} align="left" styles={{ paddingTop: 20 }}>
+                <Typography align="left" color="textSecondary" gutterBottom>
+                  {event.date.month}/{event.date.day}/{event.date.year} 
+                </Typography>
+              </Grid>
           <Grid container direction="row">
             <Grid item xs={6}>
               <Typography
@@ -66,22 +72,17 @@ export default function EventCard(props) {
                 {event.title}
               </Typography>
 
-              <Grid item xs={12} align="left" styles={{ paddingTop: 20 }}>
-                <Typography align="left" variant="h7">
-                  <Box m={1}> {event.day}</Box>
-                </Typography>
-              </Grid>
+
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={6} align="right">
               <Typography variant="h7" color="textSecondary">
                 {event.startTime}
               </Typography>
               <Typography color="textSecondary">-</Typography>
-              <Grid item xs={4} alignItem="right">
+              <Grid item xs={6} align="right">
                 <Typography
                   align="right"
-                  styles={{ padding: 20 }}
                   variant="h7"
                   color="textSecondary"
                 >
@@ -90,18 +91,18 @@ export default function EventCard(props) {
               </Grid>
             </Grid>
           </Grid>
-          <Grid container direction="row" alignContent="left">
-            <Grid item xs={12} alignItem="left">
-              <Typography variant="h7" color="textSecondary">
-                <Box m={4}> {event.location}</Box>
+          <Grid container direction="row" alignContent="left" container align="left">
+            <Grid item xs={12} style={{marginTop: 10}} >
+              <Typography variant="h7" >
+                {event.location}
               </Typography>
             </Grid>
-            <Grid item xs={12}>
-              <Typography variant="h7" color="textSecondary">
-                <Box m={-0.5}> {event.description}</Box>
+            <Grid item xs={20} style={{marginTop: 10}}>
+              <Typography variant="h7" color="textSecondary" >
+                  {event.description}
               </Typography>
             </Grid>
-            <Grid item>
+            <Grid item xs={10} align="left">
               <Button className={classes.button} onClick={handleDelete}>
                 <DeleteOutlined style={{ color: "red" }} />
               </Button>

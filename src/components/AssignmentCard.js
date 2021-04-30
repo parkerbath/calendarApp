@@ -34,13 +34,19 @@ const useStyles = makeStyles({
   grid: {
     width: 500,
     height: 450,
-    padding: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 20,
+    paddingBottom: -20,
     margin: 20,
     marginTop: 20,
   },
   button: {
     marginTop: 10,
-    marginLeft: -20,
+    marginLeft: 200,
+    marginBottom: -20,
+    paddingBottom: -20,
+    
   },
 });
 
