@@ -11,7 +11,7 @@
 ---
 
 ## Frontend Design
-![image](https://user-images.githubusercontent.com/45578338/208450574-af42929b-b47e-449a-8fef-fc6d0e88b84d.png)![image](https://user-images.githubusercontent.com/45578338/208450696-c2204c11-2e83-44b9-b7c6-237c6d8faa4c.png)
+![image](https://user-images.githubusercontent.com/45578338/208450832-08fd63c1-d464-401b-b345-64d3ad9842db.png)![image](https://user-images.githubusercontent.com/45578338/208450696-c2204c11-2e83-44b9-b7c6-237c6d8faa4c.png)
 
 
 
