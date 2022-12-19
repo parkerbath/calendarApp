@@ -10,6 +10,13 @@
 
 ---
 
+## Frontend Design
+![image](https://user-images.githubusercontent.com/45578338/208450574-af42929b-b47e-449a-8fef-fc6d0e88b84d.png)
+
+
+## Meet The Team
+
+
 ## Contribution Guidelines
 
 - Always make sure that you have pulled from the main branch before pushing commit.
