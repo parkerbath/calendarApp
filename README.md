@@ -15,6 +15,11 @@
 
 ![image](https://user-images.githubusercontent.com/45578338/208450696-c2204c11-2e83-44b9-b7c6-237c6d8faa4c.png)
 
+![image](https://user-images.githubusercontent.com/45578338/208451051-3b376fe3-0284-4bd0-bc6e-8337be7e5da3.png)
+
+![image](https://user-images.githubusercontent.com/45578338/208451103-7ac1e403-bd0d-4701-9469-125625e8f042.png)
+
+![image](https://user-images.githubusercontent.com/45578338/208451183-eedb2f4e-c2b3-4bbd-97c0-b9356291b9db.png)
 
 
 ## Meet The Team
